@@ -42,9 +42,9 @@ Student Number:	10157679
 
 Team Member #2:
 
-Name:
+Name: Sophia Perzan
 
-Student Number:	
+Student Number:	20118944
 
 
 Team Member #3:
