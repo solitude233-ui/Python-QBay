@@ -37,7 +37,7 @@ Team Member #1:
 
 Name:
 
-Student Number:	
+Student Number:
 
 
 Team Member #2:
@@ -49,9 +49,9 @@ Student Number:
 
 Team Member #3:
 
-Name:
+Name: Juliana Costa
 
-Student Number:	
+Student Number:	20156196
 
 
 Team Member #4:
