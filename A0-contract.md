@@ -56,6 +56,6 @@ Student Number:	20156196
 
 Team Member #4:
 
-Name:
+Name: Aidan Richards
 
-Student Number:	
+Student Number:	20102555
