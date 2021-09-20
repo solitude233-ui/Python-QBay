@@ -49,13 +49,13 @@ Student Number:	20118944
 
 Team Member #3:
 
-Name:
+Name: Juliana Costa
 
-Student Number:	
+Student Number:	20156196
 
 
 Team Member #4:
 
-Name:
+Name: Aidan Richards
 
-Student Number:	
+Student Number:	20102555
