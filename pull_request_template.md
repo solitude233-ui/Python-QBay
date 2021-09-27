@@ -2,6 +2,7 @@
 
 Include a short description of what you have changed
 
+Resolves #Issue Number
 
 ## Type of change
 
