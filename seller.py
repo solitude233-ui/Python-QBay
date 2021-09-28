@@ -1,8 +1,6 @@
-class seller():
-    """Initializes the seller class.
-
-
-    This class defines the attributes of a seller including the seller's inventory, customer reviews, history,
+class Seller():
+    """This class defines the attributes of a seller including
+    the seller's inventory, customer reviews, history,
     average rating, and total number of ratings.
     """
 
