@@ -1,40 +1,20 @@
-class Product:
-    '''The product class is an abstraction for all products. Each product has a
-     price, an ID, reviews, and total review score.'''
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-    def __init__(self, price, id, reviews):
-        self.ID = id
-        self.price = price
-        self.reviews = reviews
-        self.reviewScore = 0
-        self.calcReviewScore(self)
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+db = SQLAlchemy(app)
 
-    def calcReviewScore(self):
-        score = 0.0
-        for i in self.reviews:
-            score += i
-        score /= len(self.reviews)
-        self.reviewScore = score
-    '''Various get and set methods below, along with methods to manipulate the
-     review list'''
+class product(db.Model):
+    productID = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    price = db.Column(db.Float,nullable=False)
+    lastModDate = db.Column(db.Date,nullable=False)
+    ownerEmail = db.Column(db.String, db.ForeignKey(owner.email), nullable=False)
 
-    def getPrice(self):
-        return self.price
+def updateProduct():
+    pass
 
-    def getReviews(self):
-        return self.reviews
-
-    def getID(self):
-        return self.ID
-
-    def addReview(self, review):
-        self.review.append(review)
-
-    def deleteReview(self, review):
-        self.review.remove(review)
-
-    def setPrice(self, price):
-        self.price = price
-
-    def getReviewScore(self):
-        return self.reviewScore
+def verifyInputs():
+    pass
