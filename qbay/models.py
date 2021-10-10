@@ -148,5 +148,7 @@ def create_product(product_title, product_description, price,
         lastModDate=last_modified_date, ownerEmail=owner_email)
     # add it to the current database session
     db.session.add(new_product)
-    # actually save the user object
+    # actually save the product object
     db.session.commit()
+
+    return True
