@@ -2,6 +2,7 @@ import re
 import string
 from qbay import app
 from flask_sqlalchemy import SQLAlchemy
+from datetime import date
 
 
 '''
@@ -101,53 +102,56 @@ def login(email, password):
 def create_product(product_title, product_description, price,
                    last_modified_date, owner_email):
     """Creates a product under a user.
-
     Check if all the attributes being created are valid before creating 
     the product in the database."""
     # Test if the title is correct
-    if ((not product_title.isalnum()) or product_title[0] == " " or
-            product_title[-1] == " "):
-        return "The title has to be alphanumeric only and the"\
-            "first and last character cannot be space."
+    if product_title[0] == " " or product_title[-1] == " " or (
+            not product_title.replace(" ", "").isalnum()):
+        print("The title has to be alphanumeric only and the "
+              "first and last character cannot be space.")
+        return None
 
     if len(product_title) > 80:
+        return None
         print("Length of the product title cannot exceed 80 characters")
 
     if (len(product_description) < 20 or len(product_description) > 2000):
-        return "Lenght of the product description should be at least "\
-            "20 characters and at most 2000 characters"
+        return None
+        print("Lenght of the product description should be at least "
+              "20 characters and at most 2000 characters")
 
     if len(product_description) <= len(product_title):
-        return "Length of description must be longer than the product's title."
+        return None
+        print("Length of description must be longer than the product's title.")
 
     if price < 10 or price > 10000:
-        return "Price has to be within the range of [10,10000]"
+        print("Price has to be within the range of [10,10000].")
+        return None
 
     # Check if the date is within range
-    dates = last_modified_date.split("-")
-    if dates[0] >= "2021" and dates[0] <= "2025":
-        if dates[0] == "2025":
-            if dates[1] > "01":
-                return "Date has to be after 2021-01-02 and before 2025-01-02."
-            elif dates[2] > "02":
-                return "Date has to be after 2021-01-02 and before 2025-01-02."
-    else:
-        return "Date has to be after 2021-01-02 and before 2025-01-02."
+    if last_modified_date < date(
+            2021, 1, 2) or last_modified_date > date(
+            2025, 1, 2):
+        print("Date has to be between 2021-01-02 and 2025-01-02.")
+        return None
 
     # Check if own email is empty
     if (len(owner_email) == 0):
-        return "Owner email cannot be empty"
+        print("Owner email cannot be empty.")
+        return None
 
     # Check if the owner exists in the database
     exist_owner = User.query.filter_by(email=owner_email).first()
     if exist_owner is None:
-        return "The user doesn't exist in the data base"
+        print("The user doesn't exist in the data base.")
+        return None
 
     # Check if the title already exists under the same user
     exist_title = product.query.filter_by(
         ownerEmail=owner_email, title=product_title)
     if exist_title is not None:
-        return "The product title already exits under the same user."
+        print("The product title already exits under the same user.")
+        return None
 
     # Add the product under the user database
     new_product = product(
@@ -281,7 +285,7 @@ def login(user_email, user_password):
 
     # CHECK PASSWORD
     # Check if password is empty
-    if len(user_password) == 0:
+    if user_password == "":
         print("Error: Password cannot be empty.")
         return False
     # Check if password length is too short
