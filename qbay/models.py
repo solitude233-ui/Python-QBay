@@ -133,7 +133,7 @@ def create_product(product_title, product_description, price,
         print("The user doesn't exist in the data base")
 
     # Check if the title already exists under the same user
-    exist_title = exist_owner.query.filter_by(title=product_title)
+    exist_title = User.query.filter_by(email=owner_email, title=product_title)
     if exist_title is not None:
         print("The product title already exits under the same user.")
 
