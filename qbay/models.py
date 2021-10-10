@@ -25,7 +25,7 @@ class User(db.Model):
 
 
 class transaction(db.Model):
-    """Creates the transaction entities and attributes inside the data base."""
+    """Creates the transaction entities and attributes inside the database."""
     transaction_id = db.Column(db.Integer, primary_key=True)
     user_email = db.Column(db.String(120), unique=True, nullable=False)
     product_id = db.Column(db.Integer, unique=True, nullable=False)
@@ -34,6 +34,7 @@ class transaction(db.Model):
 
 
 class product(db.Model):
+    """Creates the product entity and related attributes in the database."""
     ID = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), nullable=False)
     description = db.Column(db.String(2000), nullable=False)
