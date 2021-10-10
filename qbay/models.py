@@ -38,13 +38,12 @@ class Transaction(db.Model):
 class Product(db.Model):
     """Creates the product entity and related attributes in the database."""
     ID = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(120), nullable=False)
-    description = db.Column(db.String(2000), nullable=False)
+    title = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text, nullable=False)
     price = db.Column(db.Float, nullable=False)
-    lastModDate = db.Column(db.String(20), nullable=False)
-    ownerEmail = db.Column(
-        db.String, db.ForeignKey('user.email'),
-        nullable=False)
+    lastModDate = db.Column(db.Date, nullable=False)
+    ownerEmail = db.Column(db.String, db.ForeignKey('user.email'),
+                           nullable=False)
 
 
 class Review(db.Model):
