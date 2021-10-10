@@ -32,6 +32,16 @@ class transaction(db.Model):
     date = db.Column(db.String(20), unique=True, nullable=False)
 
 
+class product(db.Model):
+    ID = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    lastModDate = db.Column(db.Date, nullable=False)
+    ownerEmail = db.Column(db.String, db.ForeignKey('owner.email'),
+                           nullable=False)
+
+
 # create all tables
 db.create_all()
 
@@ -86,7 +96,7 @@ def create_product(product_title, product_description, price,
     if ((not product_title.isalnum()) or product_title[0] == " " or
             product_title[-1] == " "):
         print(
-            "The title has to be alphanumeric only and"
+            "The title has to be alphanumeric only and "
             "the first and last character cannot be space.")
 
     if len(product_title) > 80:
@@ -124,16 +134,16 @@ def create_product(product_title, product_description, price,
         print("The user doesn't exist in the data base")
 
     # Check if the title already exists under the same user
-    exist_title = exist_owner.products.query.filter_by(title=product_title)
+    exist_title = exist_owner.query.filter_by(title=product_title)
     if exist_title is not None:
         print("The product title already exits under the same user.")
 
     # Add the product under the user database
-    product = Product(
+    new_product = product(
         tile=product_title,
         description=product_description, price=price,
-        date=last_modified_date, user=exist_owner)
+        lastModDate=last_modified_date, ownerEmail=exist_owner)
     # add it to the current database session
-    db.session.add(product)
+    db.session.add(new_product)
     # actually save the user object
     db.session.commit()
