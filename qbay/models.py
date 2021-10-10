@@ -8,6 +8,8 @@ from flask_sqlalchemy import SQLAlchemy
 This file defines data models and related business logics
 '''
 
+db = SQLAlchemy(app)
+
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -160,8 +162,18 @@ def create_product(product_title, product_description, price,
     return True
 
 
-def update_user_profile(user_email, user_name, shipping_address, postal_code, value_to_update):
-    special = ["!", "#", "$", "%", "&", "'", "*", "+", "-", "/", "=", "?", "^", "_", "`", "{", "|", "}", "~"]
+def update_user_profile(user_email, user_name, shipping_address,
+                        postal_code, value_to_update):
+    
+    special = [
+        "!", "#", "$", 
+        "%", "&", "'", 
+        "*", "+", "-", 
+        "/", "=", "?", 
+        "^", "_", "`", 
+        "{", "|", "}",
+        "~"]
+
     user = User.query.filter_by(email=user_email).first()
 
     # Check validity of shipping address
@@ -175,19 +187,22 @@ def update_user_profile(user_email, user_name, shipping_address, postal_code, va
         print("Error: Shipping address cannot contain special characters.")
         return False
     else:
-        if value_to_update.lower() == "shipping address":
-            user.shipping_address = shipping_address
-            return True
+        None
+        # if value_to_update.lower() == "shipping address":
+        # user.shipping_address = shipping_address
+        # return True
 
     # Check validity of postal_code
-    regex = "[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ] ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]"
+    regex = "[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ]"\
+            " ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]"
     if re.match(regex, postal_code) is None:
         print("Error: Invalid postal code")
         return False
     else:
-        if value_to_update.lower() == "postal code)":
-            user.postal_code = postal_code
-            return True
+        None
+        # if value_to_update.lower() == "postal code)":
+        # user.postal_code = postal_code
+        # return True
 
     # Check validity of user_name
     if len(user_name) == 0:
@@ -206,24 +221,38 @@ def update_user_profile(user_email, user_name, shipping_address, postal_code, va
         print("Error: User name must be less than 20 characters.")
         return False
     else:
-        if value_to_update.lower() == "user name":
-            user.user_name = user_name
-            return True
+        None
+        # if value_to_update.lower() == "user name":
+        # user.user_name = user_name
+        # return True
 
 
 def login(user_email, user_password):
-    special = ["!", "#", "$", "%", "&", "'", "*", "+", "-", "/", "=", "?", "^", "_", "`", "{", "|", "}", "~"]
+    special = [
+        "!", "#", "$", 
+        "%", "&", "'",
+        "*", "+", "-",
+        "/", "=", "?",
+        "^", "_", "`",
+        "{", "|", "}",
+        "~"]
+
     local_part = user_email.split("@")[0]
 
     # CHECK EMAIL
-    # Check validity of email for case: local part does not start/end with quotes
+    # Check validity of email for case: local part does not start/end 
+    # with quotes
     if not local_part.startswith('"') or not local_part.endswith('"'):
         # Check email is empty
         if len(user_email) == 0:
             print("Error: Email cannot be empty.")
             return False
         # Check if email is too long
-        elif len(user_email.split("@")[0]) > 64 or len(user_email.split("@")[1]) > 255:
+        elif len(user_email.split("@")[0]) > 64:
+            print("Error: Email is too long.")
+            return False
+        # Check if email is too long
+        elif len(user_email.split("@")[1]) > 255:
             print("Error: Email is too long.")
             return False
         # Check if email starts or ends with period
@@ -243,7 +272,10 @@ def login(user_email, user_password):
     # Check validity of email for case: local part starts/ends with quotes
     else:
         # Check email length
-        if len(user_email.split("@")[0]) > 64 or len(user_email.split("@")[1]) > 255:  # CHECK IF THIS IS OCTETS
+        if (
+            len(user_email.split("@")[0]) > 64
+            or len(user_email.split("@")[1]) > 255
+        ):
             print("Error: Email is too long.")
             return False
 

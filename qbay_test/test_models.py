@@ -1,4 +1,4 @@
-from qbay.models import register, login, create_product, review
+from qbay.models import register, login, create_product, update_user_profile
 import random
 
 
@@ -160,52 +160,60 @@ def test_update_user_profile():
     postal_code = "M5B 2H1"
     value_to_update = None
 
-    print("-------------- Testing Begins: update_user_profile() --------------")
+    print("--- Testing Begins: update_user_profile() ---")
 
     # Testing invalid user name inputs
     # Test incorrect value: user name is empty
     test1_user_name = ""
     print("Testing an empty user name: ")
-    assert update_user_profile(user_email, test1_user_name, shipping_address, postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test1_user_name, shipping_address,
+                               postal_code, value_to_update) is False
 
     # Test incorrect value: user name has special character
     test2_user_name = "Jo!hn"
     print("Testing a user name with special character: ")
-    assert update_user_profile(user_email, test2_user_name, shipping_address, postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test2_user_name, shipping_address,
+                               postal_code, value_to_update) is False
 
     # Test incorrect value: user name has space as prefix
     test3_user_name = " John"
     print("Testing a user name with a space: ")
-    assert update_user_profile(user_email, test3_user_name, shipping_address, postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test3_user_name, shipping_address,
+                               postal_code, value_to_update) is False
 
     # Test incorrect value: user name is too short
     test4_user_name = "J"
     print("Testing a user name too short: ")
-    assert update_user_profile(user_email, test4_user_name, shipping_address, postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test4_user_name, shipping_address,
+                               postal_code, value_to_update) is False
 
     # Test incorrect value: user name is too long
     test5_user_name = "John Smith John Smith John Smith"
     print("Testing a user name too long: ")
-    assert update_user_profile(user_email, test5_user_name, shipping_address, postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test5_user_name, shipping_address,
+                               postal_code, value_to_update) is False
 
     # Testing invalid shipping address inputs
     # Test incorrect value: shipping address is empty
     test1_shipping_address = ""
     print("Testing an empty shipping address: ")
-    assert update_user_profile(user_email, user_name, test1_shipping_address, postal_code, value_to_update) is False
+    assert update_user_profile(user_email, user_name, test1_shipping_address,
+                               postal_code, value_to_update) is False
 
     # Test incorrect value: shipping address has special characters
     test2_shipping_address = "220 Yo!nge Street"
     print("Testing a shipping address with special characters: ")
-    assert update_user_profile(user_email, user_name, test2_shipping_address, postal_code, value_to_update) is False
+    assert update_user_profile(user_email, user_name, test2_shipping_address,
+                               postal_code, value_to_update) is False
 
     # Testing invalid postal code inputs
     # Test incorrect value: invalid postal code
     test1_postal_code = "M5B 2!1"
     print("Testing an invalid postal code: ")
-    assert update_user_profile(user_email, user_name, shipping_address, test1_postal_code, value_to_update) is False
+    assert update_user_profile(user_email, user_name, shipping_address,
+                               test1_postal_code, value_to_update) is False
 
-    print("-------------- Testing Completed --------------")
+    print("--- Testing Completed ---")
 
 
 def test_login():
@@ -214,7 +222,7 @@ def test_login():
     user_password = "Password!"
     address = "@gmail.com"
 
-    print("-------------- Testing Begins: login() --------------")
+    print("--- Testing Begins: login() ---")
 
     # Testing invalid user email inputs
     # Test incorrect value: user email is empty
@@ -271,4 +279,4 @@ def test_login():
     print("Testing a user password that does not have a special character: ")
     assert login(user_email, test5_user_password) is False
 
-    print("-------------- Testing Completed --------------")
+    print("--- Testing Completed ---")
