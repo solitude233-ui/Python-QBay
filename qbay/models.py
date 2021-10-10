@@ -23,6 +23,15 @@ class User(db.Model):
         return '<User %r>' % self.username
 
 
+class transaction(db.Model):
+    """Creates the transaction entities and attributes inside the data base."""
+    transaction_id = db.Column(db.Integer, primary_key=True)
+    user_email = db.Column(db.String(120), unique=True, nullable=False)
+    product_id = db.Column(db.Integer, unique=True, nullable=False)
+    price = db.Column(db.Integer, unique=True, nullable=False)
+    date = db.Column(db.String(20), unique=True, nullable=False)
+
+
 # create all tables
 db.create_all()
 
@@ -65,3 +74,66 @@ def login(email, password):
     if len(valids) != 1:
         return None
     return valids[0]
+
+
+def create_product(user_email, product_title, product_description, price,
+                   last_modified_date, owner_email):
+    """Creates a product under a user.
+
+    Check if all the attributes being created are valid before creating 
+    the product in the database."""
+    # Test if the title is correct
+    if ((not product_title.isalnum()) or product_title[0] == " " or
+            product_title[-1] == " "):
+        print(
+            "The title has to be alphanumeric only and"
+            "the first and last character cannot be space.")
+
+    if len(product_title) > 80:
+        print("Length of the product title cannot exceed 80 characters")
+
+    if (len(product_description) < 20 or len(product_description) > 2000):
+        print(
+            "Lenght of the product description should be at least "
+            "20 characters and at most 2000 characters")
+
+    if len(product_description) <= len(product_title):
+        print("Length of description must be longer than the product's title.")
+
+    if price < 10 or price > 10000:
+        print("Price has to be within the range of [10,10000]")
+
+    # Check if the date is within range
+    dates = last_modified_date.split("-")
+    if dates[0] >= "2021" and dates[0] <= "2025":
+        if dates[0] == "2025":
+            if dates[1] > "01":
+                print("Date has to be after 2021-01-02 and before 2025-01-02.")
+            elif dates[2] > "02":
+                print("Date has to be after 2021-01-02 and before 2025-01-02.")
+    else:
+        print("Date has to be after 2021-01-02 and before 2025-01-02.")
+
+    # Check if own email is empty
+    if (len(owner_email) == 0):
+        print("Owner email cannot be empty")
+
+    # Check if the owner exists in the database
+    exist_owner = User.query.filter_by(email=owner_email).first()
+    if exist_owner is None:
+        print("The user doesn't exist in the data base")
+
+    # Check if the title already exists under the same user
+    exist_title = exist_owner.products.query.filter_by(title=product_title)
+    if exist_title is not None:
+        print("The product title already exits under the same user.")
+
+    # Add the product under the user database
+    product = Product(
+        tile=product_title,
+        description=product_description, price=price,
+        date=last_modified_date, user=exist_owner)
+    # add it to the current database session
+    db.session.add(product)
+    # actually save the user object
+    db.session.commit()
