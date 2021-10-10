@@ -38,8 +38,7 @@ class product(db.Model):
     description = db.Column(db.Text, nullable=False)
     price = db.Column(db.Float, nullable=False)
     lastModDate = db.Column(db.Date, nullable=False)
-    ownerEmail = db.Column(db.String, db.ForeignKey('User.email'),
-                           nullable=False)
+    ownerEmail = db.Column(db.String, nullable=False)
 
 
 # create all tables
