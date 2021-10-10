@@ -143,7 +143,7 @@ def create_product(product_title, product_description, price,
 
     # Add the product under the user database
     new_product = product(
-        tile=product_title,
+        title=product_title,
         description=product_description, price=price,
         lastModDate=last_modified_date, ownerEmail=owner_email)
     # add it to the current database session
