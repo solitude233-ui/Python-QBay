@@ -76,7 +76,7 @@ def login(email, password):
     return valids[0]
 
 
-def create_product(user_email, product_title, product_description, price,
+def create_product(product_title, product_description, price,
                    last_modified_date, owner_email):
     """Creates a product under a user.
 
