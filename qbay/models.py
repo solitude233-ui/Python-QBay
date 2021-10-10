@@ -11,6 +11,7 @@ db = SQLAlchemy(app)
 
 
 class User(db.Model):
+    __tablename__ = 'user'
     username = db.Column(
         db.String(80), nullable=False)
     email = db.Column(
@@ -38,7 +39,9 @@ class product(db.Model):
     description = db.Column(db.Text, nullable=False)
     price = db.Column(db.Float, nullable=False)
     lastModDate = db.Column(db.Date, nullable=False)
-    ownerEmail = db.Column(db.String, nullable=False)
+    ownerEmail = db.Column(
+        db.String, db.ForeignKey('user.email'),
+        nullable=False)
 
 
 # create all tables
@@ -133,7 +136,8 @@ def create_product(product_title, product_description, price,
         print("The user doesn't exist in the data base")
 
     # Check if the title already exists under the same user
-    exist_title = User.query.filter_by(email=owner_email, title=product_title)
+    exist_title = product.query.filter_by(
+        ownerEmail=owner_email, title=product_title)
     if exist_title is not None:
         print("The product title already exits under the same user.")
 
