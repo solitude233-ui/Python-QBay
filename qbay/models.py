@@ -4,7 +4,6 @@ from qbay import app
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
 
-
 '''
 This file defines data models and related business logics
 '''
@@ -21,6 +20,7 @@ class User(db.Model):
         primary_key=True)
     password = db.Column(
         db.String(120), nullable=False)
+    products = db.relationship('product', backref="user", lazy=True)
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -164,7 +164,57 @@ def create_product(product_title, product_description, price,
 
     return True
 
+  
+def updateProduct(ID, newID, title, description, price, ownerEmail):
+    productToUpdate = product.query.filter_by(ID=ID,
+                                              ownerEmail=ownerEmail).first()
+    if(verifyProductInputs(productToUpdate, newID, title, description, price)
+            and date.today() > date(2021, 1, 2) and 
+            date.today < date(2025, 1, 2)):
+        productToUpdate.ID = newID
+        productToUpdate.title = title
+        productToUpdate.description = description
+        productToUpdate.price = price
+        productToUpdate.lastModDate = date.today()
+        return True
+    else:
+        return False
+# Take in the parameters and check them for conformity with specifications
 
+
+def verifyProductInputs(product, newID, title, description, price):
+    oldPrice = product.price
+    oldID = product.ID
+# If title is not less than or equal to 80 chars, isnt alphanumeric +
+# spaces (excluding prefix and suffix whitespace) then return false
+    if (not(len(title) <= 80 and title.replace(' ', '').isalnum() and
+        (title[:1] == ' ' or title[:1].isalnum()) and
+        (title[len(title) - 1:len(title)] == ' ' or
+         title[len(title) - 1:len(title)].isalnum()))):
+        return False
+    # Check that the title isn't already in use
+    if (product.query.filter_by(title=title).all() > 0):
+        return False
+    
+        # If the description is not greater than or equal to 20 chars, less
+        # than or equal to 2000 chars, and is not longer than title, return
+        # false
+    if (not(len(description) >= 20 and len(description)
+            <= 2000 and len(description) > len(title))):
+        return False
+        # Price must be greater and fall in the bounds of 10 to 10,000
+        # inclusive
+    if (not(price > oldPrice and price >= 10 and price <= 10000)):
+        return False
+        # The new ID must not already be in use
+    if (not(newID == oldID or
+            product.query.filter_by(ID=newID,
+                                    ownerEmail=product.ownerEmail).first()
+            is None)):
+        return False
+    return True
+
+  
 def update_user_profile(user_email, user_name, shipping_address,
                         postal_code, value_to_update):
     
