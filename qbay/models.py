@@ -1,4 +1,3 @@
-import string
 from qbay import app
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
@@ -18,7 +17,7 @@ class User(db.Model):
         primary_key=True)
     password = db.Column(
         db.String(120), nullable=False)
-    products = db.relationship('product', backref="user",lazy=True)
+    products = db.relationship('product', backref="user", lazy=True)
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -40,13 +39,12 @@ class product(db.Model):
     description = db.Column(db.Text, nullable=False)
     price = db.Column(db.Float, nullable=False)
     lastModDate = db.Column(db.Date, nullable=False)
-    #ownerEmail = db.Column(db.String, db.ForeignKey('user.user_email'),
-     #                      nullable=False)
+    ownerEmail = db.Column(db.String, db.ForeignKey('user.user_email'),
+                           nullable=False)
 
 
 # create all tables
 db.create_all()
-
 
 
 def register(name, email, password):
@@ -155,10 +153,13 @@ def create_product(product_title, product_description, price,
 
     return True
 
+
 def updateProduct(ID, newID, title, description, price, ownerEmail):
-    productToUpdate = product.query.filter_by(ID=ID, ownerEmail=ownerEmail).first()
-    if(verifyProductInputs(productToUpdate, newID, title, description, price) and
-       date.today() > date(2021, 1, 2) and date.today < date(2025, 1, 2)):
+    productToUpdate = product.query.filter_by(ID=ID,
+                                              ownerEmail=ownerEmail).first()
+    if(verifyProductInputs(productToUpdate, newID, title, description, price)
+            and date.today() > date(2021, 1, 2) and 
+            date.today < date(2025, 1, 2)):
         productToUpdate.ID = newID
         productToUpdate.title = title
         productToUpdate.description = description
@@ -168,6 +169,8 @@ def updateProduct(ID, newID, title, description, price, ownerEmail):
     else:
         return False
 # Take in the parameters and check them for conformity with specifications
+
+
 def verifyProductInputs(product, newID, title, description, price):
     oldPrice = product.price
     oldID = product.ID
@@ -178,8 +181,8 @@ def verifyProductInputs(product, newID, title, description, price):
         (title[len(title) - 1:len(title)] == ' ' or
          title[len(title) - 1:len(title)].isalnum()))):
         return False
-    #Check that the title isn't already in use
-    if (product.query.filter_by(title=title).all()>0):
+    # Check that the title isn't already in use
+    if (product.query.filter_by(title=title).all() > 0):
         return False
     
         # If the description is not greater than or equal to 20 chars, less
@@ -194,6 +197,8 @@ def verifyProductInputs(product, newID, title, description, price):
         return False
         # The new ID must not already be in use
     if (not(newID == oldID or
-            product.query.filter_by(ID=newID, ownerEmail = product.ownerEmail).first() is None)):
+            product.query.filter_by(ID=newID,
+                                    ownerEmail=product.ownerEmail).first()
+            is None)):
         return False
     return True
