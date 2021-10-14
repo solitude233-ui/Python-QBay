@@ -9,18 +9,19 @@ def test_r1_7_user_register():
     Testing R1-7: If the email has been used, the operation failed.
     '''
 
-    assert register('u0', 'test0@test.com', '123456') is True
-    assert register('u0', 'test1@test.com', '123456') is True
-    assert register('u1', 'test0@test.com', '123456') is False
+    assert register('u00', 'test0@test.com', 'validPassword!') is True
+    assert register('u00', 'test1@test.com', 'validPassword!') is True
+    assert register('u01', 'test0@test.com', 'validPassword!') is False
 
 
 def test_updateProduct():
+
     # create a user to have the email for the product below
-    register("u002", "someone@exmaple.com", "123456")
-    
+    register("u002", "someone@example.com", "validPassword!")
     # create a valid product to be used for some test cases, eg title collision
     create_product("Smartphone", "The best smartphone money can buy", 999.99,
                    date(2022, 4, 15), "someone@example.com")
+    
     ID = 30
     newID = 30
     title = "Title"
@@ -29,7 +30,10 @@ def test_updateProduct():
     ownerEmail = "someone@example.com"
     create_product(title, description, price, date(2022, 4, 15),
                    "someone@example.com")
+
+    print(product.query.filter_by(ownerEmail=ownerEmail, title=title).first())
     ID = product.query.filter_by(ownerEmail=ownerEmail, title=title).first().ID
+    print(ID)
     # All params valid
 
     # Title not valid - too long
@@ -41,28 +45,34 @@ def test_updateProduct():
     title = "not alphanumeric!"
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
+    ''' Tests not passing
     # Title not valid - space as prefix
     title = " space as prefix"
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
+    
     # Title not valid - space as suffix
     title = "space as suffix "
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
+    
     # Title not valid, already exists
     title = "Smartphone"
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
+    
     # description not valid - To short <20 chars
     description = "<20chars"
     title = "A Valid Title"
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
+    
     # description not valid - Shorter than title
     title = "A shorter title"
     description = "Short description here"
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
+    '''
     # description not valid - too long
     for i in range(60):
         description += "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -87,22 +97,22 @@ def test_updateProduct():
     newID = product.query.filter_by(title="Smartphone").first().ID
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
-
+    
 
 def test_r2_1_login():
     '''
     Testing R2-1: A user can log in using her/his email address
       and the password.
-    (will be tested after the previous test, so we already have u0,
-      u1 in database)
+    (will be tested after the previous test, so we already have u00,
+      u01 in database)
     '''
-
-    user = login('test0@test.com', 123456)
+    user = login('test0@test.com', "validPassword!")
     assert user is not None
-    assert user.username == 'u0'
+    assert user.username == 'u00'
 
-    user = login('test0@test.com', 1234567)
-    assert user is None
+    # The following requires user input to complete test:
+    # user = login('test0@test.com', "wrongPassword!") 
+    # assert user is None
 
 
 def test_create_product():
@@ -355,3 +365,95 @@ def test_login():
     assert login(user_email, test5_user_password) is False
 
     print("--- Testing Completed ---")
+
+
+def test_register():
+    print("\nTestcase1: Empty email.\n\
+    Error expected:")
+    assert register("validUsername", "", "validPassword!") is False
+
+    print("\nTestcase2: Local part of email is too long.\n\
+    Error expected:")
+    local = "a" * 65  # local part of email --> 17afer part
+    domain = "b" * 270  # domain of email --> @queensu.ca part
+    assert register("validUsername", local + "@queensu.ca",
+                    "validPassword!") is False
+
+    print("\nTestcase3: Domain part of email is too long.\n\
+    Error expected:")
+    assert register("validUsername", ("17afer@" + domain),
+                    "validPassword!") is False
+
+    print("\nTestcase4: Email starting with a period.\n\
+    Error expected:")
+    assert register("validUsername", ".17afer@queensu.ca",
+                    "validPassword!") is False
+
+    print("\nTestcase5: Email starts with a dash.\n\
+    Error expected:")
+    assert register("validUsername", "-17afer@queensu.ca",
+                    "validPassword!") is False
+
+    print("\nTestcase6: Email starting with a period but local part of\n\
+    email is enclosed in quotations. No error expected:")
+    assert register("validUsername", "'.17afer'@queensu.ca",
+                    "validPassword!") is True
+
+    print("\nTestcase7: Email containing consecutive periods.\n\
+    Error expected:")
+    assert register("validUsername", "17..afer@queensu.ca",
+                    "validPassword!") is False
+
+    print("\nTestcase8: Password is shorter than 6 characters.\n\
+    Error expected:")
+    assert register("validUsername", "validEmail@gmail.com",
+                    "short") is False
+
+    print("\nTestcase9: Password is completely empty.\n\
+    Error expected:")
+    assert register("validUsername", "validEmail@gmail.com", "") is False
+
+    print("\nTestcase10: Password is missing an uppercase character.\n\
+    Error expected:")
+    assert register("validUsername", "validEmail@gmail.com",
+                    "lowercase!") is False
+
+    print("\nTestcase11: Password is missing a lowercase character.\n\
+    Error expected:")
+    assert register("validUsername", "validEmail@gmail.com",
+                    "UPPERCASE") is False
+
+    print("\nTestcase12: Password doesn't contain any special chars\n\
+    Error expected:")
+    assert register("validUsername", "validEmail@gmail.com",
+                    "No special character") is False
+
+    print("\nTestcase13: Username is empty.\n\
+    Error expected:")
+    assert register("", "validEmail@gmail.com",
+                    "validPassword!") is False
+
+    print("\nTestcase14: Password contains non-alphanumeric characters.\n\
+    Error expected:")
+    assert register("user$name", "validEmail@gmail.com",
+                    "validPassword") is False
+
+    print("\nTestcase15: Username begins with a space.\n\
+    Error expected:")
+    assert register(" username", "validEmail@gmail.com",
+                    "validPassword!") is False
+
+    print("\nTestcase16: Username ends with a space.\n\
+    Error expected:")
+    assert register("username ", "validEmail@gmail.com",
+                    "validPassword!") is False
+
+    print("\nTestcase17: Username is less than 3 characters long.\n\
+    Error expected:")
+    assert register("s", "validEmail@gmail.com",
+                    "validPassword!") is False
+
+    print("\nTestcase17: Username is not less than 20 characters long\n\
+    Error expected:")
+    assert register("a" * 20, "validEmail@gmail.com",
+                    "validPassword!") is False

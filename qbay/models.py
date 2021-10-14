@@ -35,7 +35,7 @@ class Transaction(db.Model):
     date = db.Column(db.String(20), unique=True, nullable=False)
 
 
-class Product(db.Model):
+class product(db.Model):
     """Creates the product entity and related attributes in the database."""
     ID = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text, nullable=False)
@@ -58,44 +58,100 @@ class Review(db.Model):
 db.create_all()
 
 
-def register(name, email, password):
-    '''
-    Register a new user
-      Parameters:
-        name (string):     user name
-        email (string):    user email
-        password (string): user password
-      Returns:
-        True if registration succeeded otherwise False
-    '''
-    # check if the email has been used:
-    existed = User.query.filter_by(email=email).all()
+def register(user_name, user_email, user_password, user_balance=100):
+    acceptable = [string.ascii_lowercase, string.ascii_uppercase,
+                  string.digits]
+    special = ["!", "#", "$", "%", "&", "'", "*", "+", "-", "/", "=",
+               "?", "^", "_", "`", "{", "|", "}", "~"]
+    acceptable.extend(special)
+
+    # Check if email is empty
+    if len(user_email) == 0:
+        print("Error: email cannot be empty")
+        return False
+
+    local_part = user_email.split("@")[0]
+    # CHECK EMAIL
+    # Check validity of email for case: local part starts/ends with quotes
+    if not ((local_part.startswith('"') and local_part.endswith('"')) 
+            or (local_part.startswith("'") and local_part.endswith("'"))):
+        # Check email length
+        if (len(user_email.split("@")[0]) > 64 
+                or len(user_email.split("@")[1]) > 255):    
+            print("Error: Email is too long.")
+            return False
+        # Check if email starts or ends with period
+        elif user_email.startswith(".") or user_email.endswith("."):
+            print("Error: Email cannot start or end with a period.")
+            return False
+        # Check if email starts or ends with a hyphen
+        elif user_email.startswith("-") or user_email.endswith("-"):
+            print("Error: Email cannot start or end with a dash")
+            return False
+
+        # Check if email contains consecutive periods
+        for i in range(len(user_email) - 2):
+            if user_email[i:i + 2] == "..":
+                print("Error: Email cannot contain consecutive periods.")
+                return False
+                    
+    # Check if password meets minimum length requirement
+    if len(user_password) < 6:
+        print("Error: password must be at least 6 characters in length")
+        return False
+    
+    # check if password has at least one uppercase, lowercase
+    # and special character
+    numSpecialChars = 0
+    numUppercase = 0
+    numLowercase = 0
+    for ch in user_password:
+        if (ch in string.ascii_lowercase):
+            numLowercase += 1
+        if (ch in string.ascii_uppercase):
+            numUppercase += 1
+        if (ch in special):
+            numSpecialChars += 1
+    if numSpecialChars == 0:
+        print("Error: password must contain at least one special \
+        character")
+        return False
+    if numUppercase == 0:
+        print("Error: password must contain at least one uppercase \
+        character")
+        return False
+    if numLowercase == 0:
+        print("Error: password must contain at least one lowercase \
+        character")
+        return False
+
+    # Check validity of user_name
+    if len(user_name) == 0:
+        print('Error: User name cannot be empty.')
+        return False
+    elif not user_name.isalnum():
+        print("Error: User name must be alphanumeric-only.")
+        return False
+    elif user_name.startswith(" ") or user_name.endswith(" "):
+        print("Error: User name cannot start or end with a space.")
+        return False
+    elif len(user_name) < 3:
+        print("Error: User name must be greater than 2 characters.")
+        return False
+    elif len(user_name) > 19:
+        print("Error: User name must be less than 20 characters.")
+        return False
+
+    # Check if user exists in the database
+    existed = User.query.filter_by(email=user_email).all()
     if len(existed) > 0:
         return False
 
-    # create a new user
-    user = User(username=name, email=email, password=password)
-    # add it to the current database session
+    user = User(username=user_name, email=user_email, password=user_password)
     db.session.add(user)
-    # actually save the user object
     db.session.commit()
 
-    return True
-
-
-def login(email, password):
-    '''
-    Check login information
-      Parameters:
-        email (string):    user email
-        password (string): user password
-      Returns:
-        The user object if login succeeded otherwise None
-    '''
-    valids = User.query.filter_by(email=email, password=password).all()
-    if len(valids) != 1:
-        return None
-    return valids[0]
+    return True  # if everything worked return True
 
 
 def create_product(product_title, product_description, price,
@@ -111,18 +167,18 @@ def create_product(product_title, product_description, price,
         return None
 
     if len(product_title) > 80:
-        return None
         print("Length of the product title cannot exceed 80 characters")
-
+        return None
+        
     if (len(product_description) < 20 or len(product_description) > 2000):
-        return None
-        print("Lenght of the product description should be at least "
+        print("Length of the product description should be at least "
               "20 characters and at most 2000 characters")
-
-    if len(product_description) <= len(product_title):
         return None
+        
+    if len(product_description) <= len(product_title):
         print("Length of description must be longer than the product's title.")
-
+        return None
+        
     if price < 10 or price > 10000:
         print("Price has to be within the range of [10,10000].")
         return None
@@ -145,12 +201,16 @@ def create_product(product_title, product_description, price,
         print("The user doesn't exist in the data base.")
         return None
 
+    ''' Code is causing the function to return None instead of True when given
+    the correct input. Needs to be modified to only return None if that product
+    already exists under the user
     # Check if the title already exists under the same user
-    exist_title = product.query.filter_by(
-        ownerEmail=owner_email, title=product_title)
+    exist_title = product.query.filter_by(ownerEmail=owner_email,
+        title=product_title)
     if exist_title is not None:
-        print("The product title already exits under the same user.")
+        print("The product title already exists under the same user.")
         return None
+    '''
 
     # Add the product under the user database
     new_product = product(
@@ -356,15 +416,18 @@ def login(user_email, user_password):
 
     # Check if user exists in the database
     valid = False
-    user = User.query.filter_by(email=user_email).first()
+    userObj = User.query.filter_by(email=user_email).first()
     while not valid:
-        if user_email != user.user_email:
+        if user_email != userObj.email:
             print("Invalid username.")
             user_email = input("Please enter email: ")
         else:
-            if user_password != user.user_password:
+            if user_password != userObj.password:
                 print("Invalid password.")
                 user_email = input("Please enter email: ")
                 user_password = input("Please enter password: ")
             else:
                 valid = True
+    return userObj  # return the user because the login was succesfull
+
+    
