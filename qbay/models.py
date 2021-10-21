@@ -73,11 +73,11 @@ def register(user_name, user_email, user_password, user_balance=100):
     local_part = user_email.split("@")[0]
     # CHECK EMAIL
     # Check validity of email for case: local part starts/ends with quotes
-    if not ((local_part.startswith('"') and local_part.endswith('"')) 
+    if not ((local_part.startswith('"') and local_part.endswith('"'))
             or (local_part.startswith("'") and local_part.endswith("'"))):
         # Check email length
-        if (len(user_email.split("@")[0]) > 64 
-                or len(user_email.split("@")[1]) > 255):    
+        if (len(user_email.split("@")[0]) > 64
+                or len(user_email.split("@")[1]) > 255):
             print("Error: Email is too long.")
             return False
         # Check if email starts or ends with period
@@ -94,12 +94,12 @@ def register(user_name, user_email, user_password, user_balance=100):
             if user_email[i:i + 2] == "..":
                 print("Error: Email cannot contain consecutive periods.")
                 return False
-                    
+
     # Check if password meets minimum length requirement
     if len(user_password) < 6:
         print("Error: password must be at least 6 characters in length")
         return False
-    
+
     # check if password has at least one uppercase, lowercase
     # and special character
     numSpecialChars = 0
@@ -169,16 +169,16 @@ def create_product(product_title, product_description, price,
     if len(product_title) > 80:
         print("Length of the product title cannot exceed 80 characters")
         return None
-        
+
     if (len(product_description) < 20 or len(product_description) > 2000):
         print("Length of the product description should be at least "
               "20 characters and at most 2000 characters")
         return None
-        
+
     if len(product_description) <= len(product_title):
         print("Length of description must be longer than the product's title.")
         return None
-        
+
     if price < 10 or price > 10000:
         print("Price has to be within the range of [10,10000].")
         return None
@@ -224,12 +224,12 @@ def create_product(product_title, product_description, price,
 
     return True
 
-  
+
 def updateProduct(ID, newID, title, description, price, ownerEmail):
     productToUpdate = product.query.filter_by(ID=ID,
                                               ownerEmail=ownerEmail).first()
     if(verifyProductInputs(productToUpdate, newID, title, description, price)
-            and date.today() > date(2021, 1, 2) and 
+            and date.today() > date(2021, 1, 2) and
             date.today < date(2025, 1, 2)):
         productToUpdate.ID = newID
         productToUpdate.title = title
@@ -255,7 +255,7 @@ def verifyProductInputs(product, newID, title, description, price):
     # Check that the title isn't already in use
     if (product.query.filter_by(title=title).all() > 0):
         return False
-    
+
         # If the description is not greater than or equal to 20 chars, less
         # than or equal to 2000 chars, and is not longer than title, return
         # false
@@ -274,16 +274,16 @@ def verifyProductInputs(product, newID, title, description, price):
         return False
     return True
 
-  
+
 def update_user_profile(user_email, user_name, shipping_address,
                         postal_code, value_to_update):
-    
+
     special = [
-        "!", "#", "$", 
-        "%", "&", "'", 
-        "*", "+", "-", 
-        "/", "=", "?", 
-        "^", "_", "`", 
+        "!", "#", "$",
+        "%", "&", "'",
+        "*", "+", "-",
+        "/", "=", "?",
+        "^", "_", "`",
         "{", "|", "}",
         "~"]
 
@@ -342,7 +342,7 @@ def update_user_profile(user_email, user_name, shipping_address,
 
 def login(user_email, user_password):
     special = [
-        "!", "#", "$", 
+        "!", "#", "$",
         "%", "&", "'",
         "*", "+", "-",
         "/", "=", "?",
@@ -353,7 +353,7 @@ def login(user_email, user_password):
     local_part = user_email.split("@")[0]
 
     # CHECK EMAIL
-    # Check validity of email for case: local part does not start/end 
+    # Check validity of email for case: local part does not start/end
     # with quotes
     if not local_part.startswith('"') or not local_part.endswith('"'):
         # Check email is empty
@@ -429,5 +429,3 @@ def login(user_email, user_password):
             else:
                 valid = True
     return userObj  # return the user because the login was succesfull
-
-    

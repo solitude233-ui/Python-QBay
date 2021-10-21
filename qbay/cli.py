@@ -8,7 +8,7 @@ def login_page():
     return login(email, password)
 
 
-def regsiter_page():
+def register_page():
     email = input('Please input email:')
     password = input('Please input password:')
     password_twice = input('Please input the password again:')
@@ -28,12 +28,13 @@ def create_product_page():
     title = input("Please enter the title of your product: ")
     description = input("Please enter the description of your product: ")
     price = float(input("Please enter the price of your product: "))
-    modified_date = date(
-        input("Please enter the last modified date in "
-              "(year, month, day) format: "))
+    year = int(input("Please enter the last modified year: "))
+    month = int(input("Please enter the last modified month: "))
+    day = int(input("Please enter the last modified day: "))
+    date1 = date(year, month, day)
     email = input("Please enter your email: ")
 
-    if create_product(title, description, price, modified_date, email) is None:
+    if create_product(title, description, price, date1, email) is None:
         print("Failed to create a product.")
     else:
         print("Product created successfully!")
