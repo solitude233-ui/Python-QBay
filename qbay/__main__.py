@@ -5,6 +5,10 @@ from qbay.cli import create_product_page, update_product_page
 
 
 def main():
+    """
+    This is the main screen of our frontend.
+    It repeatedly prompts the user to enter a selection which leads to 
+    different pages that performs certain tasks until the user enters x. """
     selection = input(
         "Welcome. Please type 1 to login, type 2 to register, "
         "type 3 to update your profile and"

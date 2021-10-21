@@ -21,6 +21,10 @@ def regsiter_page():
 
 
 def create_product_page():
+    """
+    This is the page that allows the user to create a product.
+    It prompts the user to enter all the required information and call the
+    create_product function to attempt to create a new product."""
     title = input("Please enter the title of your product: ")
     description = input("Please enter the description of your product: ")
     price = float(input("Please enter the price of your product: "))
