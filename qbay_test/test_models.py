@@ -50,23 +50,23 @@ def test_updateProduct():
     title = " space as prefix"
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
-    
+
     # Title not valid - space as suffix
     title = "space as suffix "
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
-    
+
     # Title not valid, already exists
     title = "Smartphone"
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
-    
+
     # description not valid - To short <20 chars
     description = "<20chars"
     title = "A Valid Title"
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
-    
+
     # description not valid - Shorter than title
     title = "A shorter title"
     description = "Short description here"

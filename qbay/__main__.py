@@ -22,7 +22,8 @@ def main():
         elif selection == '2':
             register_page()
         elif selection == "3":
-            update_profile_page()
+            # update_profile_page()
+            pass
         elif selection == "4":
             product_selection = input("Press 1 to create a product and "
                                       "press 2 to update an existing product.")

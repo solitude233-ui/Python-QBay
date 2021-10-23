@@ -38,3 +38,18 @@ def create_product_page():
         print("Failed to create a product.")
     else:
         print("Product created successfully!")
+
+
+def update_product_page():
+    email = input(
+        "Enter the email of the user who's product you'd like to update: ")
+    ID = int(input(
+        "Please inpput the ID of the product you'd like to update: "))
+    newID = int(input("Enter the updated ID of the product: "))
+    title = (input("Enter an updated Title: "))
+    description = (input("Enter an updated description of the product: "))
+    price = float(input("Enter an updated price of the product: "))
+    if(updateProduct(ID, newID, title, description, price, email)):
+        print("Successs")
+    else:
+        print("Failure. Check your inputs follow specifications and try again")
