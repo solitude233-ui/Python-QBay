@@ -41,6 +41,15 @@ def create_product_page():
 
 
 def update_product_page():
+    """
+    The function allows the user to update the parameters of a specific
+    product. It asks the user to input their email and ID of the
+    product, and the updated parameters for the product.
+    Then it checks if the produxt exists. If it does
+    Then the method simply tries to update the product by calling
+    a pre-existing update_product() function.
+    It prints a message to let the user know if it was succesful.
+    """
     # Ask user for the required inputs
     email = input(
         "Enter the email of the user who's product you'd like to update: ")
