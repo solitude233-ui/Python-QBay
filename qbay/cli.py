@@ -1,5 +1,5 @@
 from qbay.models import login, register, create_product, updateProduct, \
-    update_user_profile
+    update_user_profile, product
 from datetime import date
 
 
@@ -39,6 +39,36 @@ def create_product_page():
         print("Failed to create a product.")
     else:
         print("Product created successfully!")
+
+
+def update_product_page():
+    """
+    The function allows the user to update the parameters of a specific
+    product. It asks the user to input their email and ID of the
+    product, and the updated parameters for the product.
+    Then it checks if the produxt exists. If it does
+    Then the method simply tries to update the product by calling
+    a pre-existing update_product() function.
+    It prints a message to let the user know if it was succesful.
+    """
+    # Ask user for the required inputs
+    email = input(
+        "Enter the email of the user who's product you'd like to update: ")
+    ID = int(input(
+        "Please input the ID of the product you'd like to update: "))
+    newID = int(input("Enter the updated ID of the product: "))
+    title = (input("Enter an updated Title: "))
+    description = (input("Enter an updated description of the product: "))
+    price = float(input("Enter an updated price of the product: "))
+    # Check if the prodcut actually exists
+    if(product.query.filter_by(ownerEmail=email, title=title).first() is None):
+        print("Failure. The product doesn't exist under the user. Try again")
+        return
+    # If the product exists, try to update it
+    if(updateProduct(ID, newID, title, description, price, email)):
+        print("Successs")
+    else:
+        print("Failure. Check your inputs follow specifications and try again")
 
 
 def update_profile_page():
@@ -84,4 +114,3 @@ def update_profile_page():
                      "Please enter 1 to update another item, or 2 to quit. "
         if end_update == "2":
             update = False
-
