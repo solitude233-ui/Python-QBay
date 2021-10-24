@@ -1,4 +1,5 @@
-from qbay.models import login, register, create_product, updateProduct, product
+from qbay.models import login, register, create_product, updateProduct, \
+    update_user_profile, product
 from datetime import date
 
 
@@ -68,3 +69,48 @@ def update_product_page():
         print("Successs")
     else:
         print("Failure. Check your inputs follow specifications and try again")
+
+
+def update_profile_page():
+    """
+    This page allows a user to update their user information, including their
+    user name, email address, and postal code. The function prompts the user
+    for their email address and which entity they would like to update. The
+    function calls update_user_profile and returns false if the entity failed
+    to be updated. The loop continues to prompt the user if they would like to
+    continue updating their profile, or if they are finished and would like to
+    quit.
+    """
+    user_email = input("Please enter your current log in email address: ")
+    update = True
+    while not update:
+        selection = input("Please enter 1 to update your user name, 2 to "
+                          "update your shipping address, or 3 to update your "
+                          "postal code: ")
+        if selection == "1":
+            new_user_name = "Enter your new user name: "
+            if update_user_profile(user_email, new_user_name, "user name") \
+                    is False:
+                print("Failed to update user name.")
+            else:
+                print("User name updated successfully.")
+        elif selection == "2":
+            new_shipping_address = "Enter your new shipping address: "
+            if update_user_profile(user_email, new_shipping_address,
+                                   "shipping address") is False:
+                print("Failed to update shipping address.")
+            else:
+                print("Shipping address updated successfully.")
+
+        elif selection == "3":
+            new_postal_code = "Enter your new postal code: "
+            if update_user_profile(user_email, new_postal_code, "postal code")\
+                    is False:
+                print("Failed to updated postal code.")
+            else:
+                print("Postal code updated successfully.")
+
+        end_update = "Would you like to continue updating your profile? " \
+                     "Please enter 1 to update another item, or 2 to quit. "
+        if end_update == "2":
+            update = False

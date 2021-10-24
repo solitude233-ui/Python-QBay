@@ -275,8 +275,7 @@ def verifyProductInputs(product, newID, title, description, price):
     return True
 
 
-def update_user_profile(user_email, user_name, shipping_address,
-                        postal_code, value_to_update):
+def update_user_profile(user_email, new_value, value_to_update):
 
     special = [
         "!", "#", "$",
@@ -287,57 +286,62 @@ def update_user_profile(user_email, user_name, shipping_address,
         "{", "|", "}",
         "~"]
 
-    user = User.query.filter_by(email=user_email).first()
+    # Check if user exists and get user
+    if User.query.filter_by(email=user_email).first() is None:
+        print("Error: User not found")
+        return False
+    else:
+        user = User.query.filter_by(email=user_email).first()
 
     # Check validity of shipping address
-    if len(shipping_address) == 0:
-        print("Error: Shipping address cannot be empty.")
-        return False
-    elif not (shipping_address.replace(' ', '')).isalnum():
-        print("Error: Shipping address should be alphanumeric-only.")
-        return False
-    elif any(x in shipping_address for x in special):
-        print("Error: Shipping address cannot contain special characters.")
-        return False
-    else:
-        None
-        # if value_to_update.lower() == "shipping address":
-        # user.shipping_address = shipping_address
-        # return True
+    if value_to_update.lower() == "shipping address":
+        if len(new_value) == 0:
+            print("Error: Shipping address cannot be empty.")
+            return False
+        elif not (new_value.replace(' ', '')).isalnum():
+            print("Error: Shipping address should be alphanumeric-only.")
+            return False
+        elif any(x in new_value for x in special):
+            print("Error: Shipping address cannot contain special characters.")
+            return False
+        # Update shipping address
+        else:
+            user.shipping_address = new_value
+            return True
 
     # Check validity of postal_code
-    regex = "[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ]"\
-            " ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]"
-    if re.match(regex, postal_code) is None:
-        print("Error: Invalid postal code")
-        return False
-    else:
-        None
-        # if value_to_update.lower() == "postal code)":
-        # user.postal_code = postal_code
-        # return True
+    elif value_to_update.lower() == "postal code":
+        regex = "[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ]" \
+                " ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]"
+        if re.match(regex, new_value) is None:
+            print("Error: Invalid postal code")
+            return False
+        # Update postal code
+        else:
+            user.postal_code = new_value
+            return True
 
     # Check validity of user_name
-    if len(user_name) == 0:
-        print('Error: User name cannot be empty.')
-        return False
-    elif not (user_name.replace(' ', '')).isalnum():
-        print("Error: User name must be alphanumeric-only.")
-        return False
-    elif user_name.startswith(" ") or user_name.endswith(" "):
-        print("Error: User name cannot start or end with a space.")
-        return False
-    elif len(user_name) < 3:
-        print("Error: User name must be greater than 2 characters.")
-        return False
-    elif len(user_name) > 20:
-        print("Error: User name must be less than 20 characters.")
-        return False
-    else:
-        None
-        # if value_to_update.lower() == "user name":
-        # user.user_name = user_name
-        # return True
+    elif value_to_update.lower() == "user name":
+        if len(new_value) == 0:
+            print('Error: User name cannot be empty.')
+            return False
+        elif not (new_value.replace(' ', '')).isalnum():
+            print("Error: User name must be alphanumeric-only.")
+            return False
+        elif new_value.startswith(" ") or new_value.endswith(" "):
+            print("Error: User name cannot start or end with a space.")
+            return False
+        elif len(new_value) < 3:
+            print("Error: User name must be greater than 2 characters.")
+            return False
+        elif len(new_value) > 20:
+            print("Error: User name must be less than 20 characters.")
+            return False
+        # Update user name
+        else:
+            user.user_name = new_value
+            return True
 
 
 def login(user_email, user_password):
