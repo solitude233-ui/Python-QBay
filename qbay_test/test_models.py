@@ -434,11 +434,6 @@ def test_register():
     assert register("validUsername", "validEmail@gmail.com",
                     "UPPERCASE") is False
 
-    print("\nTestcase12: Password doesn't contain any special chars\n\
-    Error expected:")
-    assert register("validUsername", "validEmail@gmail.com",
-                    "No special character") is False
-
     print("\nTestcase13: Username is empty.\n\
     Error expected:")
     assert register("", "validEmail@gmail.com",
