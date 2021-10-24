@@ -241,62 +241,71 @@ def test_update_user_profile():
     # Correct variables to test
     user_email = "John.Smith@gmail.com"
     user_name = "John"
-    shipping_address = "220 Yonge Street"
-    postal_code = "M5B 2H1"
-    value_to_update = None
+    value_to_update = "user name"
 
     print("--- Testing Begins: update_user_profile() ---")
 
+    # Testing nonexistent user
+    test1_user_email = ""
+    assert update_user_profile(test1_user_email, user_name,
+                               value_to_update) is False
+
     # Testing invalid user name inputs
+    value_to_update_name = "user name"
+
     # Test incorrect value: user name is empty
     test1_user_name = ""
     print("Testing an empty user name: ")
-    assert update_user_profile(user_email, test1_user_name, shipping_address,
-                               postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test1_user_name,
+                               value_to_update_name) is False
 
     # Test incorrect value: user name has special character
     test2_user_name = "Jo!hn"
     print("Testing a user name with special character: ")
-    assert update_user_profile(user_email, test2_user_name, shipping_address,
-                               postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test2_user_name,
+                               value_to_update_name) is False
 
     # Test incorrect value: user name has space as prefix
     test3_user_name = " John"
     print("Testing a user name with a space: ")
-    assert update_user_profile(user_email, test3_user_name, shipping_address,
-                               postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test3_user_name,
+                               value_to_update_name) is False
 
     # Test incorrect value: user name is too short
     test4_user_name = "J"
     print("Testing a user name too short: ")
-    assert update_user_profile(user_email, test4_user_name, shipping_address,
-                               postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test4_user_name,
+                               value_to_update_name) is False
 
     # Test incorrect value: user name is too long
     test5_user_name = "John Smith John Smith John Smith"
     print("Testing a user name too long: ")
-    assert update_user_profile(user_email, test5_user_name, shipping_address,
-                               postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test5_user_name,
+                               value_to_update_name) is False
 
     # Testing invalid shipping address inputs
+    value_to_update_shipping = "shipping address"
+
     # Test incorrect value: shipping address is empty
     test1_shipping_address = ""
     print("Testing an empty shipping address: ")
-    assert update_user_profile(user_email, user_name, test1_shipping_address,
-                               postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test1_shipping_address,
+                               value_to_update_shipping) is False
 
     # Test incorrect value: shipping address has special characters
     test2_shipping_address = "220 Yo!nge Street"
     print("Testing a shipping address with special characters: ")
-    assert update_user_profile(user_email, user_name, test2_shipping_address,
-                               postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test2_shipping_address,
+                               value_to_update_shipping) is False
 
     # Testing invalid postal code inputs
+    value_to_update_postal = "postal code"
+
     # Test incorrect value: invalid postal code
     test1_postal_code = "M5B 2!1"
     print("Testing an invalid postal code: ")
-    assert update_user_profile(user_email, user_name, shipping_address,
-                               test1_postal_code, value_to_update) is False
+    assert update_user_profile(user_email, test1_postal_code,
+                               value_to_update_postal) is False
 
     print("--- Testing Completed ---")
 
