@@ -21,7 +21,7 @@ def test_updateProduct():
     # create a valid product to be used for some test cases, eg title collision
     create_product("Smartphone", "The best smartphone money can buy", 999.99,
                    date(2022, 4, 15), "someone@example.com")
-    
+
     ID = 30
     newID = 30
     title = "Title"
@@ -97,7 +97,7 @@ def test_updateProduct():
     newID = product.query.filter_by(title="Smartphone").first().ID
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
-    
+
 
 def test_r2_1_login():
     '''
@@ -111,7 +111,7 @@ def test_r2_1_login():
     assert user.username == 'u00'
 
     # The following requires user input to complete test:
-    # user = login('test0@test.com', "wrongPassword!") 
+    # user = login('test0@test.com', "wrongPassword!")
     # assert user is None
 
 
