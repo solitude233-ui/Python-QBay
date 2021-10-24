@@ -3,18 +3,33 @@ from datetime import date
 
 
 def login_page():
-    email = input('Please input email')
-    password = input('Please input password:')
-    return login(email, password)
+    '''
+    Takes email and password information from the user and displays the
+    result of the attempted login
+    '''
+    email = input('Please input email: ')
+    password = input('Please input password: ')
+    loginAttempt = login(email, password)
+    if loginAttempt is False:
+        print("Login failed")
+    else:
+        print("Login Sucessful")
+        return loginAttempt
 
 
 def register_page():
-    email = input('Please input email:')
-    password = input('Please input password:')
-    password_twice = input('Please input the password again:')
+    '''
+    Takes the user's email, username and password and attempts to register
+    them as a new user. The function then displays the result of this
+    registration attempt to the user.
+    '''
+    email = input('Please input your email: ')
+    username = input("Please enter the username you would like to use: ")
+    password = input('Please input password: ')
+    password_twice = input('Please input the password again: ')
     if password != password_twice:
-        print('password entered not the same')
-    elif register('default name', email, password):
+        print('password entered not the same: ')
+    elif register(username, email, password):
         print('registration succceeded')
     else:
         print('regisration failed.')

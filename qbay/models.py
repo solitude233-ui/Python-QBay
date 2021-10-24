@@ -59,6 +59,9 @@ db.create_all()
 
 
 def register(user_name, user_email, user_password, user_balance=100):
+    ''' Checks whether entries are valid and then creates a user in the
+    database
+    '''
     acceptable = [string.ascii_lowercase, string.ascii_uppercase,
                   string.digits]
     special = ["!", "#", "$", "%", "&", "'", "*", "+", "-", "/", "=",
@@ -102,7 +105,6 @@ def register(user_name, user_email, user_password, user_balance=100):
 
     # check if password has at least one uppercase, lowercase
     # and special character
-    numSpecialChars = 0
     numUppercase = 0
     numLowercase = 0
     for ch in user_password:
@@ -110,12 +112,6 @@ def register(user_name, user_email, user_password, user_balance=100):
             numLowercase += 1
         if (ch in string.ascii_uppercase):
             numUppercase += 1
-        if (ch in special):
-            numSpecialChars += 1
-    if numSpecialChars == 0:
-        print("Error: password must contain at least one special \
-        character")
-        return False
     if numUppercase == 0:
         print("Error: password must contain at least one uppercase \
         character")
@@ -409,14 +405,13 @@ def login(user_email, user_password):
     elif not (any(x.islower() for x in user_password)):
         print("Error: Password must have at least one lowercase character.")
         return False
-    # Check if password contains at least one special character
-    elif not any(x in user_password for x in special):
-        print("Error: Password must have at least one special character.")
-        return False
 
     # Check if user exists in the database
     valid = False
     userObj = User.query.filter_by(email=user_email).first()
+    if userObj is None:
+        print("Error: user not found in system")
+        return False
     while not valid:
         if user_email != userObj.email:
             print("Invalid username.")
