@@ -41,7 +41,7 @@ def create_product_page():
 
 
 def update_product_page():
-    #Ask user for the required inputs
+    # Ask user for the required inputs
     email = input(
         "Enter the email of the user who's product you'd like to update: ")
     ID = int(input(
@@ -50,11 +50,11 @@ def update_product_page():
     title = (input("Enter an updated Title: "))
     description = (input("Enter an updated description of the product: "))
     price = float(input("Enter an updated price of the product: "))
-    #Check if the prodcut actually exists
+    # Check if the prodcut actually exists
     if(product.query.filter_by(ownerEmail=email, title=title).first() is None):
         print("Failure. The product doesn't exist under the user. Try again")
         return
-    #If the product exists, try to update it
+    # If the product exists, try to update it
     if(updateProduct(ID, newID, title, description, price, email)):
         print("Successs")
     else:
