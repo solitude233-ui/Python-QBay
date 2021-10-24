@@ -31,9 +31,11 @@ def test_updateProduct():
     create_product(title, description, price, date(2022, 4, 15),
                    "someone@example.com")
 
+    print("\nBegin Query")
     print(product.query.filter_by(ownerEmail=ownerEmail, title=title).first())
     ID = product.query.filter_by(ownerEmail=ownerEmail, title=title).first().ID
     print(ID)
+    print()
     # All params valid
 
     # Title not valid - too long
@@ -45,7 +47,7 @@ def test_updateProduct():
     title = "not alphanumeric!"
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
-    ''' Tests not passing
+    
     # Title not valid - space as prefix
     title = " space as prefix"
     assert updateProduct(ID, newID, title, description, price,
@@ -72,7 +74,7 @@ def test_updateProduct():
     description = "Short description here"
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
-    '''
+
     # description not valid - too long
     for i in range(60):
         description += "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

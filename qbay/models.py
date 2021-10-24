@@ -253,7 +253,7 @@ def verifyProductInputs(product, newID, title, description, price):
          title[len(title) - 1:len(title)].isalnum()))):
         return False
     # Check that the title isn't already in use
-    if (product.query.filter_by(title=title).all() > 0):
+    if (len(product.query.filter_by(title=title).all()) > 0):
         return False
 
         # If the description is not greater than or equal to 20 chars, less
