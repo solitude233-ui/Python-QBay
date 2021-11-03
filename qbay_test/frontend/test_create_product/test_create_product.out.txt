@@ -1,0 +1,27 @@
+Product created successfully!
+
+The title has to be alphanumeric only and the first and last character cannot be space.
+Failed to create a product.
+
+Length of the product title cannot exceed 80 characters
+Failed to create a product.
+
+Length of description must be longer than the product's title.
+Failed to create a product.
+
+Price has to be within the range of [10,10000].
+Failed to create a product.
+
+Price has to be within the range of [10,10000].
+Failed to create a product.
+
+Date has to be between 2021-01-02 and 2025-01-02.
+Failed to create a product.
+
+Owner email cannot be empty.
+Failed to create a product.
+
+Product created successfully!
+
+Price has to be within the range of [10,10000].
+Failed to create a product.
