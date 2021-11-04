@@ -17,11 +17,9 @@ Sean:
   Encountered difficulties: N/A
   Current plan: Finishing all test cases and add test_create_product.py.
   
+  
 Sophia:
   Assigned task(s): Test UpdateProduct, on sprint4-Sophia branch
-  
   Progress: Decided what blackbox testing methods to use (input/output partitioning with shotgun for robustness)
-  
   Encountered difficulties: Shotgun works best for numerical values, less so for more 'open ended' inputs like products and strings. 
-  
   Current plan: Finish up partitioning then for each partition test, make a copy which is in the same partition class, but uses shotgun for inputs/outputs where applicable
