@@ -1,0 +1,13 @@
+# Blackbox input boundary test - local part of email is <65 characters
+2
+17afer@queensu.ca
+myusername
+validPassword!
+validPassword!
+
+# Blackbox input boundary test - local part of email is >65 characters
+2
+17aferrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr@queensu.ca
+myusername2
+validPassword!
+validPassword!

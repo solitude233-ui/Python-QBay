@@ -98,19 +98,21 @@ def update_profile_page():
     """
     user_email = input("Please enter your current log in email address: ")
     update = True
-    while not update:
+    while update:
         selection = input("Please enter 1 to update your user name, 2 to "
                           "update your shipping address, or 3 to update your "
                           "postal code: ")
         if selection == "1":
-            new_user_name = "Enter your new user name: "
+            new_user_name = input("Enter your new user name: ")
             if update_user_profile(user_email, new_user_name, "user name") \
                     is False:
                 print("Failed to update user name.")
             else:
                 print("User name updated successfully.")
+                
+                
         elif selection == "2":
-            new_shipping_address = "Enter your new shipping address: "
+            new_shipping_address = input("Enter your new shipping address: ")
             if update_user_profile(user_email, new_shipping_address,
                                    "shipping address") is False:
                 print("Failed to update shipping address.")
@@ -118,14 +120,14 @@ def update_profile_page():
                 print("Shipping address updated successfully.")
 
         elif selection == "3":
-            new_postal_code = "Enter your new postal code: "
+            new_postal_code = input("Enter your new postal code: ")
             if update_user_profile(user_email, new_postal_code, "postal code")\
                     is False:
                 print("Failed to updated postal code.")
             else:
                 print("Postal code updated successfully.")
 
-        end_update = "Would you like to continue updating your profile? " \
-                     "Please enter 1 to update another item, or 2 to quit. "
+        end_update = input("Would you like to continue updating your profile? " \
+                     "Please enter 1 to update another item, or 2 to quit. ")
         if end_update == "2":
             update = False

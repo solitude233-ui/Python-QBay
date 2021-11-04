@@ -1,0 +1,4 @@
+registration successful!
+
+Error: Email is too long.
+registeration failed.
