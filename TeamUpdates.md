@@ -5,10 +5,10 @@ Aiden:
   Current plan:  
   
 Jules:  
-  Assigned task(s):  
-  Progress:  
-  Encountered difficulties:  
-  Current plan:  
+  Assigned task(s):  Create front end testing for update_user_profile function on branch sprint4_juliana.
+  Progress:  Decided on and currently developing three Black Box testing methods including input/output partition testing.
+  Encountered difficulties:  Possibly considering shotgun testing for postal code values.
+  Current plan:  Continue to develop test cases and determine if shotgun testing is needed.
 
 Sean:  
   Assigned task(s): Create front end test cases for create_product function.  
