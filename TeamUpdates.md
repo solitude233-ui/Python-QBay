@@ -1,8 +1,8 @@
-Aiden:  
-  Assigned task(s):  
-  Progress:  
-  Encountered difficulties:  
-  Current plan:  
+Aidan:  
+  Assigned task(s):  Create front end test cases for login and register function
+  Progress:  Created two blackbox boundary tests for register and used example test_login.py function
+  Encountered difficulties:  Need to clean up a few things in my code and also need to get test_login.py file working
+  Current plan:  Still need to create a test_register.py file and finish creating test cases for login and register
   
 Jules:  
   Assigned task(s):  Create front end testing for update_user_profile function on branch sprint4_juliana.  
