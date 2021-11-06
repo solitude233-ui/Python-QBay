@@ -1,27 +1,2 @@
-Product created successfully!
-
-The title has to be alphanumeric only and the first and last character cannot be space.
-Failed to create a product.
-
-Length of the product title cannot exceed 80 characters
-Failed to create a product.
-
-Length of description must be longer than the product's title.
-Failed to create a product.
-
-Price has to be within the range of [10,10000].
-Failed to create a product.
-
-Price has to be within the range of [10,10000].
-Failed to create a product.
-
-Date has to be between 2021-01-02 and 2025-01-02.
-Failed to create a product.
-
-Owner email cannot be empty.
-Failed to create a product.
-
-Product created successfully!
-
-Price has to be within the range of [10,10000].
-Failed to create a product.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your '\n 'profile and type 4 to go to your home page. Press x anytime to logout: Press '\n '1 to create a product and press 2 to update an existing product.Please enter '\n 'the title of your product: Please enter the description of your product: '\n 'Please enter the price of your product: Please enter the last modified year: '\n 'Please enter the last modified month: Please enter the last modified day: '\n "Please enter your email: The user doesn't exist in the data base.\r\n"\n 'Failed to create a product.\r\n'\n 'Welcome. Please type 1 to login, type 2 to register, type 3 to update your '\n 'profile and type 4 to go to your home 
+page. Press x anytime to logout: 
