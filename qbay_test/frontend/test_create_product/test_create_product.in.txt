@@ -1,9 +1,0 @@
-4
-1
-randomTitle
-random descrition of a product
-100
-2021
-2
-1
-test@test.com
