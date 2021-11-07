@@ -226,7 +226,7 @@ def updateProduct(ID, newID, title, description, price, ownerEmail):
                                               ownerEmail=ownerEmail).first()
     if(verifyProductInputs(productToUpdate, newID, title, description, price)
             and date.today() > date(2021, 1, 2) and
-            date.today < date(2025, 1, 2)):
+            date(2025, 1, 2)) > date.today():
         productToUpdate.ID = newID
         productToUpdate.title = title
         productToUpdate.description = description
