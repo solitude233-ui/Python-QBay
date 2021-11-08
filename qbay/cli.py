@@ -112,6 +112,7 @@ def update_profile_page():
                 print("Failed to update user name.")
             else:
                 print("User name updated successfully.")
+                
         elif selection == "2":
             new_shipping_address = input("Enter your new shipping address: ")
             if update_user_profile(user_email, new_shipping_address,
@@ -127,8 +128,9 @@ def update_profile_page():
                 print("Failed to updated postal code.")
             else:
                 print("Postal code updated successfully.")
-
+                
         end_update = input("Would you like to continue updating your profile? "
                            "Enter 1 to update another item, or 2 to quit.")
+
         if end_update == "2":
             update = False
