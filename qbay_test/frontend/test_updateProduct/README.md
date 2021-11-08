@@ -1,4 +1,5 @@
-Tests to be performed are Blackbox input partitioning, output partitioning, and shotgun testing to increase robustness of both testing methods.
+Tests to be performed are Blackbox input partitioning, output partitioning, and boundry testing
+Boundry testing is implemented on all input partitioning tests by selecting values at or just above the boundry, for each partition.
 
 Lines 1-23 are setup code creating a user and a test product, and another product to check for title validity against
 
@@ -23,5 +24,5 @@ Lines 104-111 are test on price being descreased + being atleast 10 + no more th
 Lines 112-115 are test on email not existing
 
 #Output paritioning
-Lines are testing for valid ouput
-Lines are testing for invalid output
+Lines 116-123 are testing for valid ouput
+Lines 124-131 are testing for invalid output
