@@ -21,3 +21,7 @@ Lines 104-111 are test on price being descreased + being atleast 10 + no more th
 
 #Email input partitioning
 Lines 112-115 are test on email not existing
+
+#Output paritioning
+Lines are testing for valid ouput
+Lines are testing for invalid output
