@@ -1,0 +1,123 @@
+#Contains Input partition testing, boundary testing, and finally output partition testing
+#Register a valid user
+2
+test0@email.com
+testuser0
+validP
+validP
+
+#Register another valid user to be used for boundary testing
+2
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@email.com
+testuser1
+Password
+Password
+
+#Register another valid user to be used for boundary testing
+2
+17afer@bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.com
+testuser2
+Password
+Password
+
+#Input partitioning - empty password
+1
+test0@email.com
+   #user just hits enter here
+
+#Input partitioning - password missing capital letter
+1
+test0@email.com
+invalid
+
+#Input partitioning - password missing lowercase letter
+1
+test0@email.com
+INVALID
+
+#Input partitioning - email is empty
+1
+    #user just hits enter
+Password
+
+#Input partitioning - email starts with a hyphen
+1
+-17afer@email.com
+Password
+
+#Input partitioning - email starts with a period
+1
+.17afer@email.com
+Password
+
+#Input partioning - email ends with a hyphen
+1
+17afer@email.com-
+Password
+
+#Input partitioning - email ends with a period
+1
+17afer@email.com.
+Password
+
+#Input partitioning - email and password meet requirements but email not in system
+1
+test1@email.com
+validP
+
+#Input partitioning - email and password meet requirements, email found in system but incorrect password, then enter correct password to successfully login
+1
+test0@email.com
+incorrectPassword
+test0@email.com
+validP #now do the correct password
+
+#Input partitioning - email and password meet requirements, email found in system and matching password given
+1
+test0@email.com
+validP
+
+#Boundary testing - password 5 characters (too short)
+1
+test0@email.com
+P1234
+
+#Boundary testing - password 6 characters (sufficient length)
+1
+test0@email.com
+P12345
+
+#Boundary testing - email local part is max length (64 characters)
+1
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@email.com
+Password
+
+#Boundary testing - email domain part is max length (255 characters)
+1
+17afer@bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.com
+Password
+
+#Boundary testing - email local part is over max length at 65 characters
+1
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@email.com
+Password
+
+#Boundary testing - email domain part is over max length at 256 characters
+1
+17afer@bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.com
+Password
+
+Output partition testing - create unsuccessful login
+1
+test0@email.com
+validP
+
+Output partition testing - create successful login
+1
+test2000@email.com
+validP
+x
+
+
+
+

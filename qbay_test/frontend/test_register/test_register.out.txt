@@ -1,4 +1,45 @@
-registration successful!
-
-Error: Email is too long.
-registeration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: password must be at least 6 characters in length
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: password must contain at least one uppercase         character
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: password must contain at least one lowercase         character
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: email cannot be empty
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: Email cannot start or end with a dash
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: Email cannot start or end with a period.
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: Email cannot start or end with a dash
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: Email cannot start or end with a period.
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: Email cannot start or end with a period.
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: Email cannot start or end with a period.
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: Email cannot start or end with a period.
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: Email cannot start or end with a period.
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: Email cannot start or end with a period.
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: password must be at least 6 characters in length
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: registration succceeded
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: registration succceeded
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: registration succceeded
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: Email is too long.
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: Email is too long.
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: User name must be greater than 2 characters.
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: registration succceeded
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: registration succceeded
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: User name must be less than 20 characters.
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: Error: password must contain at least one uppercase         character
+regisration failed.
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: registration succceeded
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout:

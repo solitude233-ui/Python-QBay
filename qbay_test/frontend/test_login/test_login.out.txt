@@ -1,1 +1,38 @@
-Welcome. Please type 1 to login. Or type 2 register.Please input emailPlease input password:welcome u0 
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: registration succceeded
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: registration succceeded
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input your email: Please enter the username you would like to use: Please input password: Please input the password again: registration succceeded
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: Password cannot be empty.
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: Password must have at least one uppercase character.
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: Password must have at least one lowercase character.
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: Email cannot be empty.
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: Email cannot start or end with a hyphen.
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: Email cannot start or end with a period.
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: Email cannot start or end with a hyphen.
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: Email cannot start or end with a period.
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: user not found in system
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Invalid password.
+Please enter email: Please enter password: Login Sucessful
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Login Sucessful
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: Password must be at least 6 characters.
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: Password must have at least one lowercase character.
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Login Sucessful
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Login Sucessful
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: Email is too long.
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: Email is too long.
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Login Sucessful
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout: Please input email: Please input password: Error: user not found in system
+Login failed
+Welcome. Please type 1 to login, type 2 to register, type 3 to update your profile and type 4 to go to your home page. Press x anytime to logout:

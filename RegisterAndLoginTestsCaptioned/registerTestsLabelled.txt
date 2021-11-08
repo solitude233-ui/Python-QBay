@@ -1,126 +1,177 @@
+#Contains Input partition testing, boundary testing, and finally output partition testing
+#Input partitioning - empty password
 2
 test00@email.com
 testuser
+   #user hits enter to leave password blank
+   #user hits enter again
 
-
+#Input partitioning - password missing capital letter
 2
 test00@email.com
 testuser
 invalid
 invalid
+
+#Input partitioning - password missing lowercase letter
 2
 test00@email.com
 testuser
 INVALID
 INVALID
-2
 
+#Input partitioning - email is empty
+2
+   #user just hits enter to leave email blank
 testuser
 Password
 Password
+
+#Input partitioning - email starts with a hyphen
 2
 -17afer1@email.com
 testuser
 Password
 Password
+
+#Input partitioning - email starts with a period
 2
 .17afer1@email.com
 testuser
 Password
 Password
+
+#Input partioning - email ends with a hyphen
 2
 17afer@email.com-
 testuser
 Password
 Password
+
+#Input partitioning - email ends with a period
 2
 17afer1@email.com.
 testuser
 Password
 Password
+
+#Input partitioning - empty username
 2
 17afer1@email.com.
 
 Password
 Password
+
+#Input partitioning - username containing non-alphanumeric characters
 2
 17afer1@email.com.
 testuser$$
 Password
 Password
+
+#Input partitioning - space as prefix (username)
 2
 17afer1@email.com.
  testuser
 Password
 Password
+
+#Input partitioning - space in middle (username)
 2
 17afer1@email.com.
 test user
 Password
 Password
+
+#Input partitioning - space as suffix (username)
 2
 17afer1@email.com.
 testuser 
 Password
 Password
+
+
+#Boundary testing - password 5 characters (too short)
 2
 test00@email.com
 testuser
 Pp234
 Pp234
-2
+
+#Boundary testing - password 6 characters (sufficient length)
 test00@email.com
 testuser
 Pp2345
 Pp2345
+
+#Boundary testing - email local part is max length (64 characters)
 2
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc@email.com
 testuser
 Password
 Password
+
+#Boundary testing - email domain part is max length (255 characters)
 2
 17afer@ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.com
 testuser
 Password
 Password
+
+#Boundary testing - email local part is over max length at 65 characters
 2
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc@email.com
 testuser
 Password
 Password
+
+#Boundary testing - email domain part is over max length at 256 characters
 2
 17afer@dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.com
 testuser
 Password
 Password
+
+#Boundary testing - username that is 2 characters long
 2
 testuser6@email.com
 tu
 Password
 Password
+
+#Boundary testing - username that is 3 characters long
 2
 testuser7@email.com
 tus
 Password
 Password
+
+#Boundary testing - username that is 19 characters long
 2
 testuser8@email.com
 testusertestusertes
 Password
 Password
+
+#Boundary testing - username that is 20 characters long
 2
 testuser9@email.com
 testusertestusertest
 Password
 Password
+
+Output partition testing - create unsuccessful login
 2
 test5@email.com
 testuser2
 invalidpassword
 invalidpassword
+
+Output partition testing - create successful login
 2
 test1000@email.com
 testuser
 validP
 validP
 x
+
