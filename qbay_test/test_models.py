@@ -17,18 +17,17 @@ def test_r1_7_user_register():
 def test_updateProduct():
 
     # create a user to have the email for the product below
-    register("u002", "someone@example.com", "validPassword!")
+    register("User1", "someone@example.com", "Password1!")
     # create a valid product to be used for some test cases, eg title collision
     create_product("Smartphone", "The best smartphone money can buy", 999.99,
-                   date(2022, 4, 15), "someone@example.com")
+                   date(2021, 4, 15), "someone@example.com")
 
-    ID = 30
     newID = 30
     title = "Title"
     description = "A description longer than title, for a great product"
-    price = 35.50
+    price = 35
     ownerEmail = "someone@example.com"
-    create_product(title, description, price, date(2022, 4, 15),
+    create_product(title, description, price, date(2021, 4, 15),
                    "someone@example.com")
 
     print("\nBegin Query")
@@ -70,7 +69,7 @@ def test_updateProduct():
                          ownerEmail) is False
 
     # description not valid - Shorter than title
-    title = "A shorter title"
+    title = "A title that is longer than the description"
     description = "Short description here"
     assert updateProduct(ID, newID, title, description, price,
                          ownerEmail) is False
