@@ -1,0 +1,34 @@
+This is an helper file that explains which testing method are used inside the test_create_product.in file since we cannot comment directly inside that file.
+
+Line 1-5: Not a testing method but just to create a user so we can test to add products under that user.
+
+Line 6-14: Blackbox input partitioning test
+
+Line 15-23: Blackbox input boundary test on title being not alphanumeric
+
+Line 24-32: Blackbox input boundary test on title more than 80 characters
+
+Line 33-41: Blackbox input boundary test on description shorter than title
+
+Line 42-50: Blackbox input boundary test on description shorter than 20 characters
+
+Line 51-59: Blackbox input boundary test on price out of range (more than 10000)
+
+Line 60-68: Blackbox input boundary test on price out of range (less than 10)
+
+Line 69-77: Blackbox input boundary test on date out of range
+
+Line 78-86: Blackbox input boundary test on empty owner email input
+
+Line 87-95: Blackbox output partitioning test producing failure result.
+
+Line 96-104: Blackbox output partitioning test producing success result.
+
+
+
+
+
+
+
+
+

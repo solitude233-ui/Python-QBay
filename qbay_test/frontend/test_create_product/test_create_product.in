@@ -1,4 +1,8 @@
-# Blackbox input partitioning test
+2
+test@test.com
+random
+Gg123456!
+Gg123456!
 4
 1
 randomTitle
@@ -8,8 +12,6 @@ random descrition of a product
 2
 1
 test@test.com
-
-# Blackbox input boundary test on title being not alphanumeric
 4
 1
 not,alphanumeric title
@@ -19,30 +21,33 @@ random descrition of a product
 2
 1
 test@test.com
-
-# Blackbox input boundary test on title more than 80 characters
 4
 1
-randomTitle
 More than 80 characters xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+random descrition of a product
 100
 2021
 2
 1
 test@test.com
-
-# Blackbox input boundary test on description shorter than title
 4
 1
-randomTitle
+randomTitle1111111111111
+des111111111111111111
+100
+2021
+2
+1
+test@test.com
+4
+1
+randomTitle1
 des
 100
 2021
 2
 1
 test@test.com
-
-# Blackbox input boundary test on price out of range
 4
 1
 randomTitle
@@ -52,8 +57,6 @@ random descrition of a product
 2
 1
 test@test.com
-
-# Blackbox input boundary test on price out of range
 4
 1
 randomTitle
@@ -63,8 +66,6 @@ random descrition of a product
 2
 1
 test@test.com
-
-# Blackbox input boundary test on date out of range
 4
 1
 randomTitle
@@ -74,8 +75,6 @@ random descrition of a product
 2
 1
 test@test.com
-
-# Blackbox input boundary test on empty email
 4
 1
 randomTitle
@@ -84,26 +83,22 @@ random descrition of a product
 2021
 2
 1
-
-
-# Blackbox output partitioning test with success
+ 
 4
 1
 title
-some description
-2000
+some description of a product
+11
 2022
 5
 3
 test1@test1.com
-
-# Blackbox output partitioning test with failure
 4
 1
 title
-some description
-9
-2022
-5
-3
-test1@test1.com
+random descrition of a product
+100
+2021
+2
+1
+test@test.com

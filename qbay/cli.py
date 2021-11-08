@@ -24,10 +24,10 @@ def register_page():
     them as a new user. The function then displays the result of this
     registration attempt to the user.
     '''
-    email = input('Please input your email: ')
+    email = input("Please input your email: ")
     username = input("Please enter the username you would like to use: ")
-    password = input('Please input password: ')
-    password_twice = input('Please input the password again: ')
+    password = input("Please input password: ")
+    password_twice = input("Please input the password again: ")
     if password != password_twice:
         print('password entered not the same: ')
     elif register(username, email, password):
@@ -69,18 +69,21 @@ def update_product_page():
     # Ask user for the required inputs
     email = input(
         "Enter the email of the user who's product you'd like to update: ")
-    ID = int(input(
-        "Please input the ID of the product you'd like to update: "))
+    oldTitle = input("Enter the current title of the product: ")
+    if(product.query.filter_by(ownerEmail=email, title=oldTitle).first()
+       is None):
+        print("Failure. The product doesn't exist under the user. Try again")
+        return
     newID = int(input("Enter the updated ID of the product: "))
     title = (input("Enter an updated Title: "))
     description = (input("Enter an updated description of the product: "))
     price = float(input("Enter an updated price of the product: "))
     # Check if the prodcut actually exists
-    if(product.query.filter_by(ownerEmail=email, title=title).first() is None):
-        print("Failure. The product doesn't exist under the user. Try again")
-        return
+
     # If the product exists, try to update it
-    if(updateProduct(ID, newID, title, description, price, email)):
+    if(updateProduct(
+       product.query.filter_by(ownerEmail=email, title=oldTitle).first().ID,
+       newID, title, description, price, email)):
         print("Successs")
     else:
         print("Failure. Check your inputs follow specifications and try again")
@@ -125,9 +128,9 @@ def update_profile_page():
                 print("Failed to updated postal code.")
             else:
                 print("Postal code updated successfully.")
+                
+        end_update = input("Would you like to continue updating your profile? "
+                           "Enter 1 to update another item, or 2 to quit.")
 
-        end_update = input("Do you want to continue updating your profile?"
-                           "Please enter 1 to update another item, "
-                           "or 2 to quit.")
         if end_update == "2":
             update = False

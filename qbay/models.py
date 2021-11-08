@@ -225,8 +225,10 @@ def updateProduct(ID, newID, title, description, price, ownerEmail):
     productToUpdate = product.query.filter_by(ID=ID,
                                               ownerEmail=ownerEmail).first()
     if(verifyProductInputs(productToUpdate, newID, title, description, price)
-            and date.today() > date(2021, 1, 2) and
-            date.today < date(2025, 1, 2)):
+            and date(date.today().year, date.today().month, date.today().day)
+            > date(2021, 1, 2) and
+            date(2025, 1, 2)
+            > date(date.today().year, date.today().month, date.today().day)):
         productToUpdate.ID = newID
         productToUpdate.title = title
         productToUpdate.description = description
@@ -243,10 +245,11 @@ def verifyProductInputs(product, newID, title, description, price):
     oldID = product.ID
 # If title is not less than or equal to 80 chars, isnt alphanumeric +
 # spaces (excluding prefix and suffix whitespace) then return false
-    if (not(len(title) <= 80 and title.replace(' ', '').isalnum() and
-        (title[:1] == ' ' or title[:1].isalnum()) and
-        (title[len(title) - 1:len(title)] == ' ' or
-         title[len(title) - 1:len(title)].isalnum()))):
+    if (not(len(title) <= 80 and
+        (title[:1] != ' ' or title[:1].isalnum()) and
+        (title[len(title) - 1:len(title)] != ' ' or
+         title[len(title) - 1:len(title)].isalnum()) and
+            title.replace(' ', '').isalnum())):
         return False
     # Check that the title isn't already in use
     if (len(product.query.filter_by(title=title).all()) > 0):
@@ -260,7 +263,7 @@ def verifyProductInputs(product, newID, title, description, price):
         return False
         # Price must be greater and fall in the bounds of 10 to 10,000
         # inclusive
-    if (not(price > oldPrice and price >= 10 and price <= 10000)):
+    if (not(price >= oldPrice and price >= 10 and price <= 10000)):
         return False
         # The new ID must not already be in use
     if (not(newID == oldID or
