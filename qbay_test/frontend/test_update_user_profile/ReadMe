@@ -1,0 +1,20 @@
+This is a helper file that explains the testing methods used in
+test_update_user_profile.py. Tests to be performed are Blackbox input
+partitioning, output partitioning, and boundary testing. Boundary testing is
+implemented throughout the input partitioning tests.
+
+# Register User
+Line 1-5: Registering a user to do the tests
+
+# Login
+Line 6-8: Logging in with registered user to begin tests
+
+# Blackbox input partitioning tests (line 9-78)
+9-39 : Testing inputs to update user name
+40-69 : Boundary testing on user name lower and upper bounds
+70-89: Testing inputs to update shipping address
+90-99: Testing inputs to update postal code
+
+# Blackbox output partitioning tests (line 79-88)
+100-104: Test producing successful result
+105-109: Test producing failure result
