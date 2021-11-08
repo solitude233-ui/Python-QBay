@@ -70,7 +70,8 @@ def update_product_page():
     email = input(
         "Enter the email of the user who's product you'd like to update: ")
     oldTitle = input("Enter the current title of the product: ")
-    if(product.query.filter_by(ownerEmail=email, title=oldTitle).first() is None):
+    if(product.query.filter_by(ownerEmail=email, title=oldTitle).first()
+       is None):
         print("Failure. The product doesn't exist under the user. Try again")
         return
     newID = int(input("Enter the updated ID of the product: "))
@@ -80,7 +81,9 @@ def update_product_page():
     # Check if the prodcut actually exists
 
     # If the product exists, try to update it
-    if(updateProduct(product.query.filter_by(ownerEmail=email, title=oldTitle).first().ID, newID, title, description, price, email)):
+    if(updateProduct(
+       product.query.filter_by(ownerEmail=email, title=oldTitle).first().ID,
+       newID, title, description, price, email)):
         print("Successs")
     else:
         print("Failure. Check your inputs follow specifications and try again")

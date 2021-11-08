@@ -1,7 +1,8 @@
 from qbay import *
 from qbay.models import *
 from qbay.cli import login_page, register_page
-from qbay.cli import create_product_page, update_product_page, update_profile_page
+from qbay.cli import create_product_page, update_product_page
+from qbay.cli import update_profile_page
 
 
 def main():
