@@ -12,10 +12,10 @@ Jules:
 
 Sean:  
   Assigned task(s):  Create QBay-CLI docker container/Ship docker container & docker compose  
-  Branch:  
-  Progress:  
-  Encountered difficulties:  
-  Current plan:  
+  Branch:  Sprint5-Sean
+  Progress:  Did more research and more learning on docker.
+  Encountered difficulties:  Unsure what file to generate and push to repo for this sprint.
+  Current plan:  Will spend more time the next two days to finish on time.
   
   
 Sophia:  
