@@ -20,6 +20,6 @@ Sean:
   
 Sophia:  
   Assigned task(s):  Create QBay-CLI docker container/Ship docker container & docker compose  
-  Progress:  
-  Encountered difficulties:  
-  Current plan:  
+  Progress:  Pushed docker image to https://hub.docker.com/repository/docker/sophiaperzan/qbay  
+  Encountered difficulties:  None so far, I've used docker before so its familiar
+  Current plan:  Help out Sean with Docker and finish the rest of deployment before deadline
