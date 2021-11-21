@@ -12,9 +12,9 @@ def test_login():
         'test_login.in.txt'))
     expected_out = open(current_folder.joinpath(
         'test_login.out.txt')).read()
-    """ print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Expected out...")
+    print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Expected out...")
     print(expected_out)
-    print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^") """
+    print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
 
     """ capsys -- object created by pytest to 
     capture stdout and stderr """
@@ -26,9 +26,9 @@ def test_login():
         capture_output=True,
     ).stdout.decode()
 
-    """ print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Actual output...")
+    print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Actual output...")
     print(output)
-    print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^") """
+    print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
     output = output.replace('\r', '')
     assert output.strip() == expected_out.strip()
     

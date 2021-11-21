@@ -73,6 +73,11 @@ def register(user_name, user_email, user_password, user_balance=100):
         print("Error: email cannot be empty")
         return False
 
+    # check if email contains '@' symbol
+    if not ('@' in user_email):
+        print("Error: email must contain '@' symbol")
+        return False
+
     local_part = user_email.split("@")[0]
     # CHECK EMAIL
     # Check validity of email for case: local part starts/ends with quotes
