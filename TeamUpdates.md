@@ -6,9 +6,9 @@ Aidan:
   
 Jules:  
   Assigned task(s):  Security test createProduct function  
-  Progress:  
-  Encountered difficulties:  
-  Current plan:    
+  Progress:  Creates functions for each parameter to test against the payloads.
+  Encountered difficulties:  Some qbay tests did not catch the errors, and so I had to fix the tests.
+  Current plan: Currently rewritting the 'in' files and making sure the code passes all tests.
 
 Sean:  
   Assigned task(s):  Create QBay-CLI docker container/Ship docker container & docker compose  
