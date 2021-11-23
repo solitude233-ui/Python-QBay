@@ -10,7 +10,7 @@ current_folder = Path(__file__).parent
 expected_in = open(current_folder.joinpath(
     'test_update_user_profile.in'))
 expected_out = open(current_folder.joinpath(
-    'test_update_user_profile.out')).read()
+    'test1_update_user_profile.out')).read()
 
 print(expected_out)
 
@@ -25,8 +25,5 @@ def test_login():
         stdin=expected_in,
         capture_output=True,
     ).stdout.decode()
-    print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ACTUAL OUTPUT....\n")
-    print(output)
-    print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n")
     output = output.replace('\r', '')
     assert output == expected_out

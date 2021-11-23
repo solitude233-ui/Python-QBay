@@ -180,14 +180,22 @@ def create_product(product_title, product_description, price,
         print("Length of description must be longer than the product's title.")
         return None
 
-    if price < 10 or price > 10000:
+    if type(price) is int:
+        if price < 10 or price > 10000:
+            print("Price has to be within the range of [10,10000].")
+            return None
+    else:
         print("Price has to be within the range of [10,10000].")
         return None
 
     # Check if the date is within range
-    if last_modified_date < date(
-            2021, 1, 2) or last_modified_date > date(
-            2025, 1, 2):
+    if type(last_modified_date) is date:
+        if last_modified_date < date(
+                2021, 1, 2) or last_modified_date > date(
+                2025, 1, 2):
+            print("Date has to be between 2021-01-02 and 2025-01-02.")
+            return None
+    else:
         print("Date has to be between 2021-01-02 and 2025-01-02.")
         return None
 
