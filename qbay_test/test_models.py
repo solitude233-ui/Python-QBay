@@ -19,9 +19,8 @@ def test_updateProduct():
     # create a user to have the email for the product below
     register("User1", "someone@example.com", "Password1!")
     # create a valid product to be used for some test cases, eg title collision
-    create_product("Smartphone", "The best smartphone money can buy", 999.99,
+    create_product("Smartphone", "The best smartphone money can buy", 999,
                    date(2021, 4, 15), "someone@example.com")
-
     newID = 30
     title = "Title"
     description = "A description longer than title, for a great product"

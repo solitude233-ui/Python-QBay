@@ -237,6 +237,11 @@ def create_product(product_title, product_description, price,
 def updateProduct(ID, newID, title, description, price, ownerEmail):
     productToUpdate = product.query.filter_by(ID=ID,
                                               ownerEmail=ownerEmail).first()
+    oldTitle = productToUpdate.title
+    if((oldTitle != title and len(product.query.filter_by(
+       title=title, ownerEmail=ownerEmail).all()) > 0) or
+       oldTitle == title):
+        return False
     if(verifyProductInputs(productToUpdate, newID, title, description, price)
             and date(date.today().year, date.today().month, date.today().day)
             > date(2021, 1, 2) and
