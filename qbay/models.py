@@ -66,7 +66,7 @@ def place_order(buyer_email, seller_email, product_title):
     """
     This function allows the buyer to place an order for a product.
     It checks that both buyer and seller exists and the buyer's balance
-    is enough to buy the product. If any check fails then it 
+    is enough to buy the product. If any check fails then it returns False.
     """
     # Checks if the buyer and user are the same person
     if buyer_email == seller_email:
