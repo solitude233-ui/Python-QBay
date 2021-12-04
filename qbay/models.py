@@ -77,7 +77,8 @@ def place_order(buyer_email, seller_email, product_title):
     buyer = User.query.filter_by(email=buyer_email).all()
     if buyer is None:
         print("Buyer doesn't exist inside the database")
-        return False  
+        return False
+    
     # Find the Seller and checks if the buyer exists in the database
     seller = User.query.filter_by(email=seller_email).all()
     if seller is None:
@@ -85,8 +86,8 @@ def place_order(buyer_email, seller_email, product_title):
         return False
 
     # Check if the product exists
-    item = product.query.filter_by(
-           ownerEmail=seller_email, title=product_title)
+    item = product.query.filter_by(ownerEmail=seller_email,
+                                   title=product_title).first()
     if item is None:
         print("The product doesn't exist under the seller")
         return False
@@ -201,7 +202,7 @@ def register(user_name, user_email, user_password, user_balance=100):
     if len(existed) > 0:
         return False
 
-    user = User(username=user_name, email=user_email, password=user_password, balance=user_balance)
+    user = User(username=user_name, email=user_email, password=user_password)
     db.session.add(user)
     db.session.commit()
 
