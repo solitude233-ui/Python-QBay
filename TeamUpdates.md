@@ -11,11 +11,11 @@ Jules:
   Current plan: Currently rewritting the 'out' files and making sure the code passes all tests.
 
 Sean:  
-  Assigned task(s):  Create QBay-CLI docker container/Ship docker container & docker compose  
-  Branch:  Sprint5-Sean
-  Progress:  Did more research and more learning on docker.
-  Encountered difficulties:  Unsure what file to generate and push to repo for this sprint.
-  Current plan:  Will spend more time the next two days to finish on time.
+  Assigned task(s):  Create the place order backend function.
+  Branch:  Sprint6-Sean
+  Progress:  Completed the backend function and pushed to branch.
+  Encountered difficulties:  None.
+  Current plan:  Will assist team members and modify the function according to their feedbacks.
   
   
 Sophia:  
