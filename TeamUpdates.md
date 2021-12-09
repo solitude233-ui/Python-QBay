@@ -5,10 +5,11 @@ Aidan:
   Current plan:  
   
 Jules:  
-  Assigned task(s):  Security test createProduct function  
-  Progress:  Creates functions for each parameter to test against the payloads.
-  Encountered difficulties:  Some qbay tests did not catch the errors, and so I had to fix the tests.
-  Current plan: Currently rewritting the 'out' files and making sure the code passes all tests.
+  Assigned task(s):  Security testing and deployment 
+  Branch: sprint6_juliana
+  Progress:  Finished security testing, currently running testing against fuzzy tests. Learning more about docker.
+  Encountered difficulties:  Trying to understand how to update the docker image.
+  Current plan: Currently testing, and will work on docker as team members finalize their code.
 
 Sean:  
   Assigned task(s):  Create the place order backend function.
