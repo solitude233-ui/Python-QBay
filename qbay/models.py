@@ -202,7 +202,7 @@ def register(user_name, user_email, user_password, user_balance=100):
     if len(existed) > 0:
         return False
 
-    user = User(username=user_name, email=user_email, password=user_password)
+    user = User(username=user_name, email=user_email, password=user_password, products=[], balance=100, sold="", bought="")
     db.session.add(user)
     db.session.commit()
 
