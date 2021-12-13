@@ -12,6 +12,7 @@ db = SQLAlchemy(app)
 
 
 class User(db.Model):
+    """Creates the user entity and attributes inside the database."""
     __tablename__ = 'user'
     username = db.Column(
         db.String(80), nullable=False)
@@ -21,13 +22,16 @@ class User(db.Model):
     password = db.Column(
         db.String(120), nullable=False)
     products = db.relationship('product', backref="user", lazy=True)
+    balance = db.Column(db.Integer, nullable=False)
+    sold = db.Column(db.String, nullable=False)
+    bought = db.Column(db.String, nullable=False)
 
     def __repr__(self):
         return '<User %r>' % self.username
 
 
 class Transaction(db.Model):
-    """Creates the transaction entities and attributes inside the database."""
+    """Creates the transaction entity and attributes inside the database."""
     transaction_id = db.Column(db.Integer, primary_key=True)
     user_email = db.Column(db.String(120), unique=True, nullable=False)
     product_id = db.Column(db.Integer, unique=True, nullable=False)
@@ -56,6 +60,56 @@ class Review(db.Model):
 
 # create all tables
 db.create_all()
+
+
+def place_order(buyer_email, seller_email, product_title):
+    """
+    This function allows the buyer to place an order for a product.
+    It checks that both buyer and seller exists and the buyer's balance
+    is enough to buy the product. If any check fails then it returns False.
+    """
+    # Checks if the buyer and user are the same person
+    if buyer_email == seller_email:
+        print("Users cannot place an order of their own product!")
+        return False
+
+    # Find the buyer and checks if the buyer exists in the database
+    buyer = User.query.filter_by(email=buyer_email).all()
+    if buyer is None:
+        print("Buyer doesn't exist inside the database")
+        return False
+    
+    # Find the Seller and checks if the buyer exists in the database
+    seller = User.query.filter_by(email=seller_email).all()
+    if seller is None:
+        print("Seller doesn't exist inside the database")
+        return False
+
+    # Check if the product exists
+    item = product.query.filter_by(ownerEmail=seller_email,
+                                   title=product_title).first()
+    if item is None:
+        print("The product doesn't exist under the seller")
+        return False
+
+    # Check if the buyer has enough balance
+    if buyer.balance < item.price:
+        print("Not enough balance to purchase the product!")
+        return False
+    
+    # Add the product under the seller's sold product
+    seller.sold += product_title
+    seller.sold += " "
+
+    # Add the product under the buyer's bought product
+    buyer.bought += product_title
+    buyer.bought += " "
+
+    # Delete the product after transaction completes
+    db.session.delete(item)
+    db.session.commit()
+
+    return True
 
 
 def register(user_name, user_email, user_password, user_balance=100):
