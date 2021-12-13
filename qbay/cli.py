@@ -1,4 +1,4 @@
-from qbay.models import login, register, create_product, updateProduct, \
+from qbay.models import login, place_order, register, create_product, updateProduct, \
     update_user_profile, product
 from datetime import date
 
@@ -16,6 +16,16 @@ def login_page():
     else:
         print("Login Sucessful")
         return loginAttempt
+
+
+def place_order_page():
+    buyer_email = input("Please input your email: ")
+    seller_email = input("Please input the email of the seller: ")
+    product_title = input("Please input the title of the product: ")
+    if(place_order(buyer_email, seller_email, product_title)):
+        print("Success! The product is on its way!")
+    else:
+        print("Failure! Check your inputs and try again.")
 
 
 def register_page():
