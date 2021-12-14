@@ -1,9 +1,73 @@
-from qbay.models import register, login, create_product, updateProduct, product
+from qbay.models import (register, login, create_product, updateProduct,
+                         product, place_order)
 from datetime import date
 from qbay.models import update_user_profile
 import random
 
 
+def test_place_order():
+    '''
+    testing the place_order function by first testing with legal
+    inputs and then running through all of the combinations of
+    illegal input to ensure that the errors are caught
+    '''
+    
+    # correct run through
+    register("User1", "someonee@example.com", "Password1!")
+    register("User2", "someonee1@example.com", "Password2!")
+    create_product("Smartphone", "The best smartphone money can buy", 20,
+                   date(2021, 4, 15), "someonee@example.com")
+    seller = "someonee@example.com"
+    buyer = "someonee1@example.com"
+    correct_title = "Smartphone"
+    assert place_order(buyer, seller, correct_title) is True
+
+    # make buyer and seller the same person
+    register("User3", "someonee3@example.com", "Password1!")
+    create_product("Smartphone1", "The best smartphone money can buy", 20,
+                   date(2021, 4, 15), "someonee3@example.com")
+    seller = "someonee3@example.com"
+    buyer = "someonee3@example.com"
+    correct_title = "Smartphone1"
+    assert place_order(buyer, seller, correct_title) is False
+
+    # buyer doesn't exist in database
+    register("User4", "someonee4@example.com", "Password1!")
+    create_product("Smartphonee2", "The best smartphone money can buy", 20,
+                   date(2021, 4, 15), "someonee4@example.com")
+    seller = "someonee4@example.com"
+    buyer = "someonee5@example.com"  # buyer is not registered
+    correct_title = "Smartphone2"
+    assert place_order(buyer, seller, correct_title) is False
+
+    # seller doesn't exist in database
+    register("User6", "someonee6@example.com", "Password1!")
+    create_product("Smartphone3", "The best smartphone money can buy", 20,
+                   date(2021, 4, 15), "someonee6@example.com")
+    buyer = "someonee6@example.com" 
+    seller = "someonee7@example.com"  # seller is not registered
+    correct_title = "Smartphone3"
+    assert place_order(buyer, seller, correct_title) is False
+
+    # item does not exist
+    register("User8", "someonee8@example.com", "Password1!")
+    register("User9", "someonee9@example.com", "Password2!")
+    seller = "someonee8@example.com"
+    buyer = "someonee9@example.com"
+    correct_title = "Supersmartphoneffsds"
+    assert place_order(buyer, seller, correct_title) is False
+
+    # not enough money to purchase product
+    register("User10", "someonee10@example.com", "Password1!", user_balance=10)
+    register("User11", "someonee11@example.com", "Password2!", user_balance=10)
+    seller = "someonee10@example.com"
+    buyer = "someonee11@example.com"
+    create_product("Smartphone4", "The best smartphone money can buy", 20,
+                   date(2021, 4, 15), "someonee6@example.com")
+    correct_title = "Smartphone4"
+    assert place_order(buyer, seller, correct_title) is False
+
+    
 def test_r1_7_user_register():
     '''
     Testing R1-7: If the email has been used, the operation failed.
@@ -229,8 +293,9 @@ def test_create_product():
     # Create a user in the database
     # new_user = register(sample_username, correct_email, sample_password)
     # Create a product under the user
-    create_product(correct_title, correct_description,
-                   correct_price, correct_date, correct_email)
+    product_error = create_product(correct_title, correct_description,
+                                   correct_price, correct_date, correct_email)
+    
     # Attempts to create the same product title under the same user again
     product_18 = create_product(correct_title, correct_description,
                                 correct_price, correct_date, correct_email)
