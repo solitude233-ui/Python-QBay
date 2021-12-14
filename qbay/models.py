@@ -244,9 +244,10 @@ def create_product(product_title, product_description, price,
         if price < 10 or price > 10000:
             print("Price has to be within the range of [10,10000].")
             return None
-    else:
-        print("Price has to be within the range of [10,10000].")
-        return None
+    elif type(price) is float:
+        if(price < 10.0 or price > 10000.0):
+            print("Price has to be within the range of [10,10000].")
+            return None
 
     # Check if the date is within range
     if type(last_modified_date) is date:

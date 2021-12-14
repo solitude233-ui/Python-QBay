@@ -2,7 +2,7 @@ from qbay import *
 from qbay.models import *
 from qbay.cli import login_page, register_page, update_profile_page
 from qbay.cli import create_product_page, update_product_page
-from qbay.cli import update_profile_page
+from qbay.cli import update_profile_page, place_order_page
 
 
 def main():
@@ -25,12 +25,15 @@ def main():
         elif selection == "3":
             update_profile_page()
         elif selection == "4":
-            product_selection = input("Press 1 to create a product and "
-                                      "press 2 to update an existing product.")
+            product_selection = input("Press 1 to create a product, "
+                                      "press 2 to update an existing product, "
+                                      "press 3 to place an order.")
             if product_selection == "1":
                 create_product_page()
             elif product_selection == "2":
                 update_product_page()
+            elif product_selection == "3":
+                place_order_page()
             else:
                 print("Invalid selection.")
         else:
