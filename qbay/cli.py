@@ -78,7 +78,7 @@ def update_product_page():
     """
     # Ask user for the required inputs
     email = input(
-        "Enter the email of the user who's product you'd like to update: ")
+        "Email of the user who's product you want to update: ")
     oldTitle = input("Enter the current title of the product: ")
     if(product.query.filter_by(ownerEmail=email, title=oldTitle).first()
        is None):
