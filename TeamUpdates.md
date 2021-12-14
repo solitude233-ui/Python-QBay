@@ -5,17 +5,18 @@ Aidan:
   Current plan:  
   
 Jules:  
-  Assigned task(s):  Security test createProduct function  
-  Progress:  Creates functions for each parameter to test against the payloads.
-  Encountered difficulties:  Some qbay tests did not catch the errors, and so I had to fix the tests.
-  Current plan: Currently rewritting the 'out' files and making sure the code passes all tests.
+  Assigned task(s):  Security testing and deployment 
+  Branch: sprint6_juliana
+  Progress:  Finished security testing, currently running testing against fuzzy tests. Learning more about docker.
+  Encountered difficulties:  Trying to understand how to update the docker image.
+  Current plan: Currently testing, and will work on docker as team members finalize their code.
 
 Sean:  
-  Assigned task(s):  Create QBay-CLI docker container/Ship docker container & docker compose  
-  Branch:  Sprint5-Sean
-  Progress:  Did more research and more learning on docker.
-  Encountered difficulties:  Unsure what file to generate and push to repo for this sprint.
-  Current plan:  Will spend more time the next two days to finish on time.
+  Assigned task(s):  Create the place order backend function.
+  Branch:  Sprint6-Sean
+  Progress:  Completed the backend function and pushed to branch.
+  Encountered difficulties:  None.
+  Current plan:  Will assist team members and modify the function according to their feedbacks.
   
   
 Sophia:  
