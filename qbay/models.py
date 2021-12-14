@@ -207,7 +207,8 @@ def register(user_name, user_email, user_password, user_balance=100):
         return False
 
     user = User(username=user_name, email=user_email, password=user_password,
-                balance=100, products=[], sold="", bought="")
+                products=[], balance=100, sold="", bought="")
+
     db.session.add(user)
     db.session.commit()
 
