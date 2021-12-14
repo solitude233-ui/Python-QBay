@@ -1,4 +1,5 @@
-from qbay.models import login, place_order, register, create_product, updateProduct, \
+from qbay.models import login, place_order, register, \
+    create_product, updateProduct, \
     update_user_profile, product
 from datetime import date
 
